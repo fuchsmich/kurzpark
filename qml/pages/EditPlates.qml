@@ -13,6 +13,13 @@ Page {
 
     id: page
     SilicaListView {
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Kennzeichen hinzufügen")
+                onClicked: plateList.append({"number": "ASDASD"+plateList.count, "desc":"deins"})
+
+            }
+        }
         model: plateList
         anchors.fill: parent
         header: PageHeader {
@@ -37,7 +44,7 @@ Page {
                     //                onAcceptableInputChanged: { readOnly = true }
                 }
                 Label {
-                    text: "    (" + comment + ")"
+                    text: "    (" + desc + ")"
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 20

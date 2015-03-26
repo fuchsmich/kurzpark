@@ -1,25 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
+        <source>KurzPark</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditPlates</name>
+    <message>
+        <source>Kennzeichen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kennzeichen hinzufügen</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Show Page 2</source>
+        <source>Städte bearbeiten</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UI Template</source>
+        <source>Kennzeichen bearbeiten</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hello Sailors</source>
+        <source>Einstellungen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SMS für Parkticket erstellen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ort:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autonummer:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zeit:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -34,5 +61,11 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
-
