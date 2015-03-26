@@ -19,7 +19,6 @@ SOURCES += src/jolladocking.cpp
 OTHER_FILES += qml/jolladocking.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/jolladocking.changes.in \
     rpm/jolladocking.spec \
     rpm/jolladocking.yaml \
@@ -28,9 +27,9 @@ OTHER_FILES += qml/jolladocking.qml \
     qml/pages/cutouts.qml \
     qml/pages/EditCities.qml \
     qml/pages/EditPlates.qml \
-    qml/pages/PlateModel.qml \
-    qml/pages/Settings.qml \
-    qml/components/LocalDb.qml
+    qml/components/Settings.qml \
+    qml/pages/SettingsPage.qml \
+    qml/components/PlatesData.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

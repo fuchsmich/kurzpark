@@ -6,17 +6,30 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-//import org.nemomobile.dbus 2.0
+import "../components"
 
 
 Page {
     id: page
-    property string city: cityList.get(0).text
-    property var timeList: cityList.get(0).timeList
+    property string city: settings.cityList.get(0).text
+    property var timeList: settings.cityList.get(0).timeList
     property string time: timeList.get(0).time
-    property string plateNumber: plateList.get(0).number
-    property string phoneNumber: cityList.get(0).phoneNumbers.get(0).number
+    property string plateNumber: platesData.plates.get(0).number
+    property string phoneNumber: settings.cityList.get(0).phoneNumbers.get(0).number
     property real costs: timeList.get(0).costs
+
+    PlatesData {
+        id: platesData
+    }
+
+    Settings {
+        id: settings
+    }
+
+
+    Component.onCompleted: platesData.load()
+    Component.onDestruction: platesData.save()
+
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
@@ -34,7 +47,7 @@ Page {
             }
             MenuItem {
                 text: qsTr("Einstellungen")
-                onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
         }
 
@@ -58,13 +71,13 @@ Page {
                 label: qsTr("Ort:")
                 menu: ContextMenu {
                       Repeater {
-                           model: cityList
+                           model: settings.cityList
                            MenuItem { text: model.name }
                       }
                  }
                 onCurrentIndexChanged: {
-                    city = cityList.get(currentIndex).text
-                    timeList = cityList.get(currentIndex).timeList
+                    city = settings.cityList.get(currentIndex).text
+                    timeList = settings.cityList.get(currentIndex).timeList
                 }
             }
 
@@ -74,7 +87,7 @@ Page {
                 menu: ContextMenu {
                     Repeater {
                          id:plateRep
-                         model: plateList
+                         model: platesData.plates
                          MenuItem { text: model.number }
                     }
                 }

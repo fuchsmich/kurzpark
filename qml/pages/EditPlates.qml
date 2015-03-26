@@ -6,21 +6,25 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
+import "../components"
 
 Page {
-    property var editPlatesModel
 
     id: page
+
+    PlatesData {
+        id: platesData
+    }
+
     SilicaListView {
         PullDownMenu {
             MenuItem {
                 text: qsTr("Kennzeichen hinzufügen")
-                onClicked: plateList.append({"number": "ASDASD"+plateList.count, "desc":"deins"})
+                onClicked: platesData.plates.append({"number": "ASDASD"+platesData.plates.count, "desc":"deins"})
 
             }
         }
-        model: plateList
+        model: platesData.plates
         anchors.fill: parent
         header: PageHeader {
             title: qsTr("Kennzeichen")
@@ -28,7 +32,7 @@ Page {
         delegate: ListItem {
             id: delegate
             function remove() {
-                remorseAction("Entfernen", function() { plateList.remove(index) })
+                remorseAction("Entfernen", function() { platesData.plates.remove(index) })
             }
             ListView.onRemove: animateRemoval()
             Row {
