@@ -14,7 +14,7 @@ Page {
     property string city: settings.cityList.get(0).text
     property var timeList: settings.cityList.get(0).timeList
     property string time: timeList.get(0).time
-    property string plateNumber: platesLM.get(0).number
+    property string plateNumber: platesLM.get(platesLM.currentIndex).number
     property string phoneNumber: settings.cityList.get(0).phoneNumbers.get(0).number
     property real costs: timeList.get(0).costs
 
@@ -77,6 +77,7 @@ Page {
             ComboBox {
                 width: page.width
                 label: qsTr("Autonummer:")
+                currentIndex: platesLM.currentIndex
                 menu: ContextMenu {
                     Repeater {
                          id:plateRep
@@ -86,6 +87,8 @@ Page {
                 }
                 onCurrentIndexChanged: {
                     plateNumber = plateRep.itemAt(currentIndex).text
+                    platesLM.currentIndex = currentIndex
+                    platesLM.save()
                 }
             }
 
