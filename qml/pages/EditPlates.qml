@@ -12,19 +12,22 @@ Page {
 
     id: page
 
-    PlatesData {
-        id: platesData
-    }
+//    PlatesData {
+//        id: platesData
+//    }
 
     SilicaListView {
         PullDownMenu {
             MenuItem {
                 text: qsTr("Kennzeichen hinzufügen")
-                onClicked: platesData.plates.append({"number": "ASDASD"+platesData.plates.count, "desc":"deins"})
+                onClicked: {
+                    platesLM.append({"number": "ASDASD"+platesLM.count, "desc":"deins"})
+                    platesLM.save()
+                }
 
             }
         }
-        model: platesData.plates
+        model: platesLM
         anchors.fill: parent
         header: PageHeader {
             title: qsTr("Kennzeichen")
@@ -32,7 +35,7 @@ Page {
         delegate: ListItem {
             id: delegate
             function remove() {
-                remorseAction("Entfernen", function() { platesData.plates.remove(index) })
+                remorseAction("Entfernen", function() { platesLM.remove(index) })
             }
             ListView.onRemove: animateRemoval()
             Row {

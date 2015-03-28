@@ -29,7 +29,8 @@ OTHER_FILES += qml/jolladocking.qml \
     qml/pages/EditPlates.qml \
     qml/components/Settings.qml \
     qml/pages/SettingsPage.qml \
-    qml/components/PlatesData.qml
+    qml/components/PlatesData.qml \
+    qml/components/PlatesListModel.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

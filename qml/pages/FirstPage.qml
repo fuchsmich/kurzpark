@@ -14,21 +14,14 @@ Page {
     property string city: settings.cityList.get(0).text
     property var timeList: settings.cityList.get(0).timeList
     property string time: timeList.get(0).time
-    property string plateNumber: platesData.plates.get(0).number
+    property string plateNumber: platesLM.get(0).number
     property string phoneNumber: settings.cityList.get(0).phoneNumbers.get(0).number
     property real costs: timeList.get(0).costs
 
-    PlatesData {
-        id: platesData
-    }
 
     Settings {
         id: settings
     }
-
-
-    Component.onCompleted: platesData.load()
-    Component.onDestruction: platesData.save()
 
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
@@ -87,7 +80,7 @@ Page {
                 menu: ContextMenu {
                     Repeater {
                          id:plateRep
-                         model: platesData.plates
+                         model: platesLM
                          MenuItem { text: model.number }
                     }
                 }
