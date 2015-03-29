@@ -32,18 +32,20 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
+
     Label {
         id: label
         anchors.centerIn: parent
-        text: qsTr("KurzPark")
+        text: qsTr("KurzPark") + "\n"
     }
 
     CoverActionList {
         id: coverAction
 
-//        CoverAction {
-//            iconSource: "image://theme/icon-cover-next"
-//        }
+        CoverAction {
+            iconSource: "image://theme/icon-cover-next"
+            onTriggered: Qt.openUrlExternally("sms:" + phoneNumber + "?body=" + smsText.text)
+        }
 
 //        CoverAction {
 //            iconSource: "image://theme/icon-cover-pause"

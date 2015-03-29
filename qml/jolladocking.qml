@@ -35,11 +35,17 @@ import "components"
 
 ApplicationWindow
 {
+    id: app
+
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
     PlatesListModel {
         id: platesLM
+    }
+
+    CityListModel {
+        id: cityLM
     }
 
 

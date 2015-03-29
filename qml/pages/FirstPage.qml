@@ -11,12 +11,12 @@ import "../components"
 
 Page {
     id: page
-    property string city: settings.cityList.get(0).text
-    property var timeList: settings.cityList.get(0).timeList
-    property string time: timeList.get(0).time
+    property string city: cityLM.get(cityLM.currentIndex).text
+    property var timeList: cityLM.get(cityLM.currentIndex).timeList
+    property string time: timeList.get(cityLM.currentTimeIndex).time
     property string plateNumber: platesLM.get(platesLM.currentIndex).number
-    property string phoneNumber: settings.cityList.get(0).phoneNumbers.get(0).number
-    property real costs: timeList.get(0).costs
+    property string phoneNumber: cityLM.get(cityLM.currentIndex).phoneNumbers.get(0).number
+    property real costs: timeList.get(cityLM.currentTimeIndex).costs
 
 
     Settings {
@@ -30,10 +30,10 @@ Page {
 
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
-            MenuItem {
-                text: qsTr("Städte bearbeiten")
-                onClicked: pageStack.push(Qt.resolvedUrl("EditCities.qml"))
-            }
+//            MenuItem {
+//                text: qsTr("Städte bearbeiten")
+//                onClicked: pageStack.push(Qt.resolvedUrl("EditCities.qml"))
+//            }
             MenuItem {
                 text: qsTr("Kennzeichen bearbeiten")
                 onClicked: pageStack.push(Qt.resolvedUrl("EditPlates.qml"))
@@ -62,15 +62,18 @@ Page {
                 id: citySelector
                 width: page.width
                 label: qsTr("Ort:")
+                currentIndex: cityLM.currentIndex
                 menu: ContextMenu {
                       Repeater {
-                           model: settings.cityList
+                           model: cityLM
                            MenuItem { text: model.name }
                       }
                  }
                 onCurrentIndexChanged: {
-                    city = settings.cityList.get(currentIndex).text
-                    timeList = settings.cityList.get(currentIndex).timeList
+                    cityLM.currentIndex = currentIndex
+                    cityLM.currentTimeIndex = 0
+                    city = cityLM.get(currentIndex).text
+                    timeList = cityLM.get(currentIndex).timeList
                 }
             }
 
@@ -96,6 +99,7 @@ Page {
                 id: timeSelector
                 width: page.width
                 label: qsTr("Zeit:")
+                currentIndex: cityLM.currentTimeIndex
                 menu: ContextMenu {
                       Repeater {
                           id: timeRep
@@ -110,7 +114,7 @@ Page {
             }
 
             Button {
-                text: "Send SMS"
+                text: qsTr("SMS senden")
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
 //                    smsIf.typedCall("startSMS", [ { 'type':'as', 'value': [phoneNumber] }, { 'type':'s', 'value': smsText.text } ])
@@ -127,7 +131,7 @@ Page {
             }
             Label {
 //                id: c
-                text: "Kosten: " + costs.toLocaleString(Qt.locale()) // + "€"
+                text: qsTr("Kosten: ") + costs.toLocaleString(Qt.locale()) + " €"
 //                text: timeRep.itemAt(timeSelector.currentIndex)
                 anchors.horizontalCenter: parent.horizontalCenter
             }
