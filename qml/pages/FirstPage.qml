@@ -11,6 +11,7 @@ import "../components"
 
 Page {
     id: page
+    property var coverPage
     property string city: cityLM.get(cityLM.currentIndex).text
     property var timeList: cityLM.get(cityLM.currentIndex).timeList
     property string time: timeList.get(cityLM.currentTimeIndex).time
