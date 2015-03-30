@@ -33,10 +33,12 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
+    property string smsText: "value"
+
     Label {
         id: label
         anchors.centerIn: parent
-        text: qsTr("KurzPark") + "\n"
+        text: qsTr("KurzPark") + "\n" + smsText
     }
 
     CoverActionList {
