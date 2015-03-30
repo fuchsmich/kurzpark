@@ -25,13 +25,14 @@ OTHER_FILES += qml/jolladocking.qml \
     jolladocking.desktop \
     qml/pages/cutouts.qml \
     qml/pages/EditCities.qml \
-    qml/pages/EditPlates.qml \
     qml/components/Settings.qml \
     qml/pages/SettingsPage.qml \
     qml/components/PlatesData.qml \
     qml/components/PlatesListModel.qml \
     qml/components/CityListModel.qml \
-    qml/pages/CoverPage.qml
+    qml/pages/CoverPage.qml \
+    qml/pages/PlatesList.qml \
+    qml/pages/EditPlate.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

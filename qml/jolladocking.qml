@@ -39,6 +39,7 @@ ApplicationWindow
 
 //    property string testStr: "hallo"
     property string smsText
+    property string phoneNumber
 //    property string s
 //    onSmsTextChanged: cP.smsText = smsText
 

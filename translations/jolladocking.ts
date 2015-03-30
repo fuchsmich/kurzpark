@@ -9,17 +9,6 @@
     </message>
 </context>
 <context>
-    <name>EditPlates</name>
-    <message>
-        <source>Kennzeichen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Kennzeichen hinzufügen</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FirstPage</name>
     <message>
         <source>Kennzeichen bearbeiten</source>
@@ -47,6 +36,17 @@
     </message>
     <message>
         <source>Kosten: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PlatesList</name>
+    <message>
+        <source>Kennzeichen hinzufügen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kennzeichen</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

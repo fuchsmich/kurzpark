@@ -52,6 +52,18 @@ ListModel {
             ListElement{time: 180; costs: 3.0}
         ]
     }
+//    ListElement {
+//        name: "Salzburg";
+//        phoneNumbers:[
+//            ListElement{number: "+43 800 664 4242"}
+//        ]
+//        prefix: "Start"
+//        zoneList: [
+ //      ListElement{name: "Zone 1"; text: "Z1"}
+//            ]
+//        text: "Salzburg";
+//        timeList: [   ]
+//    }
 //        ListElement { name: "Amstetten"; time: "1"  }
 //        ListElement { name: "Bregenz"; time: "1"   }
 //        ListElement { name: "Eisenstadt"; time: "1"   }

@@ -54,7 +54,7 @@ ListModel {
 
     }
     Component.onCompleted: {
-        clearDB()
+//        clearDB()
         load()}
 //    onDataChanged: save()
 //    onRowsInserted: save()

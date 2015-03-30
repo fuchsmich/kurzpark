@@ -21,6 +21,7 @@ Page {
     property string smsText: time + " " + city + "*" + plateNumber
 
     onSmsTextChanged: app.smsText = smsText
+    onPhoneNumberChanged: app.phoneNumber = phoneNumber
 
 
     Settings {
@@ -40,7 +41,7 @@ Page {
 //            }
             MenuItem {
                 text: qsTr("Kennzeichen bearbeiten")
-                onClicked: pageStack.push(Qt.resolvedUrl("EditPlates.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("PlatesList.qml"))
             }
             MenuItem {
                 text: qsTr("Einstellungen")
@@ -89,11 +90,11 @@ Page {
                     Repeater {
                          id:plateRep
                          model: platesLM
-                         MenuItem { text: model.number }
+                         MenuItem { text: model.number + " <i>(" + model.desc +")</i>"}
                     }
                 }
                 onCurrentIndexChanged: {
-                    plateNumber = plateRep.itemAt(currentIndex).text
+                    plateNumber = platesLM.get(currentIndex).number
                     platesLM.currentIndex = currentIndex
                     platesLM.save()
                 }

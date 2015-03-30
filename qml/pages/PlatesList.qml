@@ -17,6 +17,7 @@ Page {
 //    }
 
     SilicaListView {
+        id: listView
         PullDownMenu {
             MenuItem {
                 text: qsTr("Kennzeichen hinzufügen")
@@ -40,22 +41,34 @@ Page {
             ListView.onRemove: animateRemoval()
             Row {
                 x: Theme.paddingLarge
-                Label {
-                    //                id: tfPlate
+                TextField {
+                    id: plateTf
                     text: number
                     anchors.verticalCenter: parent.verticalCenter
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    //                readOnly: true
+                    readOnly: true
                     //                validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
                     //                onAccepted: { readOnly = true }
                     //                onAcceptableInputChanged: { readOnly = true }
                 }
-                Label {
-                    text: "    (" + desc + ")"
+                TextField {
+                    id: descTf
+                    text: desc
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 20
                     font.italic: true
+                    readOnly: true
+                }
+                Button {
+                    id: saveBtn
+                    text: "Save"
+                    visible: false
+                    onClicked: {
+                        plateTf.readOnly = descTf.readOnly = true
+                        visible = false
+//                        platesLM.
+                    }
                 }
             }
             menu: Component {
@@ -63,8 +76,10 @@ Page {
                     MenuItem {
                         text: "Bearbeiten"
                         onClicked: {
-                            //                            tfPlate.readOnly = false
-                            //                            tfPlate.focus = true
+                            plateTf.readOnly = descTf.readOnly = false
+                            saveBtn.visible = true
+//                            pageStack.push()}
+                                                    //, {plateIndex: listView.currentIndex}) }
                         }
                     }
                     MenuItem {
