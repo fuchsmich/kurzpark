@@ -22,10 +22,6 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Städte bearbeiten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Kennzeichen bearbeiten</source>
         <translation type="unfinished"></translation>
     </message>
@@ -47,6 +43,10 @@
     </message>
     <message>
         <source>Zeit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kosten: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

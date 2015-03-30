@@ -37,8 +37,15 @@ ApplicationWindow
 {
     id: app
 
-    initialPage: Component { FirstPage { } }
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+//    property string testStr: "hallo"
+    property string smsText
+//    property string s
+//    onSmsTextChanged: cP.smsText = smsText
+
+    initialPage: Component { FirstPage { id: fP } }
+//    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+
+    cover: Component { CoverPage{ id: cP } }
 
     PlatesListModel {
         id: platesLM

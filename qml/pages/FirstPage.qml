@@ -11,13 +11,16 @@ import "../components"
 
 Page {
     id: page
-    property var coverPage
-    property string city: cityLM.get(cityLM.currentIndex).text
     property var timeList: cityLM.get(cityLM.currentIndex).timeList
+    property string city: cityLM.get(cityLM.currentIndex).text
     property string time: timeList.get(cityLM.currentTimeIndex).time
     property string plateNumber: platesLM.get(platesLM.currentIndex).number
     property string phoneNumber: cityLM.get(cityLM.currentIndex).phoneNumbers.get(0).number
     property real costs: timeList.get(cityLM.currentTimeIndex).costs
+
+    property string smsText: time + " " + city + "*" + plateNumber
+
+    onSmsTextChanged: app.smsText = smsText
 
 
     Settings {
@@ -115,21 +118,22 @@ Page {
             }
 
             Button {
-                text: qsTr("SMS senden")
+//                text: qsTr("SMS senden")
+                text: smsText
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
 //                    smsIf.typedCall("startSMS", [ { 'type':'as', 'value': [phoneNumber] }, { 'type':'s', 'value': smsText.text } ])
-                    Qt.openUrlExternally("sms:" + phoneNumber + "?body=" + smsText.text)
-                    console.log("sms:" + phoneNumber + "?body=" + smsText.text)
+                    Qt.openUrlExternally("sms:" + phoneNumber + "?body=" + smsText)
+                    console.log("sms:" + phoneNumber + "?body=" + smsText)
                 }
 
             }
-            Label {
-                id: smsText
-                text: time + " " + city + "*" + plateNumber
-//                text: timeRep.itemAt(timeSelector.currentIndex)
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
+//            Label {
+//                id: smsTextLbl
+//                text: smsText
+////                text: timeRep.itemAt(timeSelector.currentIndex)
+//                anchors.horizontalCenter: parent.horizontalCenter
+//            }
             Label {
 //                id: c
                 text: qsTr("Kosten: ") + costs.toLocaleString(Qt.locale()) + " €"

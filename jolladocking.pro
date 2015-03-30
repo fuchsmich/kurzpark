@@ -17,7 +17,6 @@ CONFIG += sailfishapp
 SOURCES += src/jolladocking.cpp
 
 OTHER_FILES += qml/jolladocking.qml \
-    qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
     rpm/jolladocking.changes.in \
     rpm/jolladocking.spec \
@@ -31,7 +30,8 @@ OTHER_FILES += qml/jolladocking.qml \
     qml/pages/SettingsPage.qml \
     qml/components/PlatesData.qml \
     qml/components/PlatesListModel.qml \
-    qml/components/CityListModel.qml
+    qml/components/CityListModel.qml \
+    qml/pages/CoverPage.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

@@ -33,7 +33,7 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
-    property string smsText: "value"
+//    property string smsText
 
     Label {
         id: label
@@ -46,7 +46,7 @@ CoverBackground {
 
         CoverAction {
             iconSource: "image://theme/icon-cover-next"
-            onTriggered: Qt.openUrlExternally("sms:" + phoneNumber + "?body=" + smsText.text)
+            onTriggered: Qt.openUrlExternally("sms:" + phoneNumber + "?body=" + smsText)
         }
 
 //        CoverAction {

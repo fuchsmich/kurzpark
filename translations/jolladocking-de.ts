@@ -38,10 +38,6 @@
         <translation type="vanished">Hallo Matrosen</translation>
     </message>
     <message>
-        <source>Städte bearbeiten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Kennzeichen bearbeiten</source>
         <translation type="unfinished"></translation>
     </message>
@@ -63,6 +59,10 @@
     </message>
     <message>
         <source>Zeit:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kosten: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
