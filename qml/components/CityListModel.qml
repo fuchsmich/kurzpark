@@ -1,9 +1,59 @@
+/*
+  Copyright (C) 2015 Michael Fuchs
+  Contact: Michael Fuchs <michfu@gmx.at>
+  All rights reserved.
+*/
+
 import QtQuick 2.0
+import QtQuick.LocalStorage 2.0
 
 ListModel {
 //    id: cityListModel
     property int currentIndex: 0
     property int currentTimeIndex: 0
+
+    property string dbName: "KurzParkDB"
+    property string dbDesc: "KurzParkDB"
+    property string dbVersion: "1.0"
+
+    function load() {
+        var db = LocalStorage.openDatabaseSync(dbName, dbVersion, dbDesc, 1000000);
+        db.transaction(
+                    function(tx) {
+                        // Create the database if it doesn't already exist
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS CityList(currentIndex INTEGER, currentTimeIndex INTEGER)');
+                        var res = tx.executeSql('SELECT * FROM CityList')
+                        if (res.rows.length > 0) {
+                            currentIndex = res.rows.item(0).currentIndex
+                            currentTimeIndex = res.rows.item(0).currentTimeIndex
+                        }
+                    }
+                    )
+        console.log("Time loaded.")
+    }
+
+    function save() {
+        var db = LocalStorage.openDatabaseSync(dbName, dbVersion, dbDesc, 1000000);
+        db.transaction(
+                    function(tx) {
+                        // Create the database if it doesn't already exist
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS CityList(currentIndex INTEGER, currentTimeIndex INTEGER)');
+                        var res = tx.executeSql('SELECT * FROM CityList')
+                        if (res.rows.length > 0) {
+                            tx.executeSql('UPDATE CityList SET currentIndex=?, currentTimeIndex=?',
+                                          [currentIndex, currentTimeIndex])
+                        }
+                        else tx.executeSql('INSERT INTO CityList (currentIndex, currentTimeIndex) VALUES (?, ?)',
+                                           [currentIndex, currentTimeIndex])
+                    }
+                    )
+        console.log("Time saved.")
+    }
+
+    Component.onCompleted: load();
+    onCurrentIndexChanged: save();
+    onCurrentTimeIndexChanged: save();
+
 
     ListElement {
         name: "Wien";

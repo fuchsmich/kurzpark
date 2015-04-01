@@ -1,7 +1,7 @@
 /*
-  Copyright (C) 2015 Michael Fuchs <michfu@gmx.at>
+  Copyright (C) 2015 Michael Fuchs
+  Contact: Michael Fuchs <michfu@gmx.at>
   All rights reserved.
-
 */
 
 import QtQuick 2.0
@@ -23,7 +23,7 @@ Page {
                 text: qsTr("Kennzeichen hinzufügen")
                 onClicked: {
                     platesLM.append({"number": "ASDASD"+platesLM.count, "desc":"deins"})
-                    platesLM.save()
+//                    platesLM.save()
                 }
 
             }
@@ -40,34 +40,40 @@ Page {
             }
             ListView.onRemove: animateRemoval()
             Row {
+                anchors.verticalCenter: parent.verticalCenter
                 x: Theme.paddingLarge
                 TextField {
+                    width: page.width*0.4
                     id: plateTf
                     text: number
-                    anchors.verticalCenter: parent.verticalCenter
+//                    anchors.verticalCenter: parent.verticalCenter
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     readOnly: true
-                    //                validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
+                    validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
                     //                onAccepted: { readOnly = true }
                     //                onAcceptableInputChanged: { readOnly = true }
                 }
                 TextField {
+                    width: page.width*0.4
                     id: descTf
                     text: desc
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.leftMargin: 20
+//                    anchors.verticalCenter: parent.verticalCenter
                     font.italic: true
                     readOnly: true
                 }
-                Button {
+                IconButton {
                     id: saveBtn
-                    text: "Save"
+                    icon.source: "image://theme/icon-cover-next"
+                    icon.width: Theme.iconSizeSmall
+                    icon.height: Theme.iconSizeSmall
+                    width: Theme.iconSizeSmall + Theme.paddingSmall
+//                    text: "Save"
                     visible: false
                     onClicked: {
                         plateTf.readOnly = descTf.readOnly = true
                         visible = false
-//                        platesLM.
+                        platesLM.set(index, {"number": plateTf.text, "desc": descTf.text})
                     }
                 }
             }
@@ -78,8 +84,6 @@ Page {
                         onClicked: {
                             plateTf.readOnly = descTf.readOnly = false
                             saveBtn.visible = true
-//                            pageStack.push()}
-                                                    //, {plateIndex: listView.currentIndex}) }
                         }
                     }
                     MenuItem {

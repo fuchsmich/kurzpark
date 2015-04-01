@@ -1,11 +1,18 @@
+/*
+  Copyright (C) 2015 Michael Fuchs
+  Contact: Michael Fuchs <michfu@gmx.at>
+  All rights reserved.
+*/
+
 import QtQuick 2.0
 import QtQuick.LocalStorage 2.0
 
 ListModel {
-    property string dbName: "JollaDockingDB"
-    property string dbDesc: "JollaDockingDB"
+    property string dbName: "KurzParkDB"
+    property string dbDesc: "KurzParkDB"
     property string dbVersion: "1.0"
     property int currentIndex: 0
+    property bool loadingDb: false
 
     function load() {
         clear()
@@ -15,6 +22,7 @@ ListModel {
                         // Create the database if it doesn't already exist
                         tx.executeSql('CREATE TABLE IF NOT EXISTS NumberPlates(number TEXT, desc TEXT, current INTEGER)');
                         var res = tx.executeSql('SELECT * FROM NumberPlates')
+                        loadingDb = true
                         if (res.rows.length > 0) {
                             for(var i = 0; i < res.rows.length; i++) {
                                 console.log("Loaded: ", res.rows.item(i).number, res.rows.item(i).desc, res.rows.item(i).current)
@@ -24,6 +32,7 @@ ListModel {
                         else {
                             append({"number": "MD287IM", "desc":"meins"})
                         }
+                        loadingDb = false
                     }
                     )
     }
@@ -55,8 +64,9 @@ ListModel {
     }
     Component.onCompleted: {
 //        clearDB()
-        load()}
-//    onDataChanged: save()
+        load()
+    }
 //    onRowsInserted: save()
-//    onDestroyed: save()
+    onCountChanged: if (!loadingDb) save();
+    onDataChanged: if (!loadingDb) save();
 }

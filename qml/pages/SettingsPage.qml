@@ -1,7 +1,7 @@
 /*
-  Copyright (C) 2015 Michael Fuchs <michfu@gmx.at>
+  Copyright (C) 2015 Michael Fuchs
+  Contact: Michael Fuchs <michfu@gmx.at>
   All rights reserved.
-
 */
 
 import QtQuick 2.0
