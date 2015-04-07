@@ -1,4 +1,4 @@
-Name: jolladocking
+Name: harbour-kurzpark
 Summary: Tools for Short Time Parking in Austria
 Version: 0.1
 Release: 1
@@ -10,7 +10,7 @@ License: BSD
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
 Sources: https://github.com/fuchsmich/kurzpark
-- '%{name}-%{version}.tar.bz2'
+#- '%{name}-%{version}.tar.bz2'
 Description: |
   Tools for Short Time Parking in Austria
 Configure: none

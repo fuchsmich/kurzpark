@@ -10,23 +10,20 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = jolladocking
+TARGET = harbour-kurzpark
 
 CONFIG += sailfishapp
 
-SOURCES += src/jolladocking.cpp
+SOURCES += src/harbour-kurzpark.cpp
 
-OTHER_FILES += qml/jolladocking.qml \
+OTHER_FILES += qml/harbour-kurzpark.qml \
     qml/pages/FirstPage.qml \
-    rpm/jolladocking.changes.in \
-    rpm/jolladocking.spec \
-    rpm/jolladocking.yaml \
+    rpm/harbour-kurzpark.changes.in \
+    rpm/harbour-kurzpark.spec \
+    rpm/harbour-kurzpark.yaml \
     translations/*.ts \
-    jolladocking.desktop \
-    qml/pages/cutouts.qml \
+    harbour-kurzpark.desktop \
     qml/components/Settings.qml \
-    qml/pages/SettingsPage.qml \
-    qml/components/PlatesData.qml \
     qml/components/PlatesListModel.qml \
     qml/components/CityListModel.qml \
     qml/pages/CoverPage.qml \
@@ -40,5 +37,5 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/jolladocking-de.ts
+TRANSLATIONS += translations/harbour-kurzpark-de.ts
 

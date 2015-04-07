@@ -43,10 +43,10 @@ Page {
                 text: qsTr("Kennzeichen bearbeiten")
                 onClicked: pageStack.push(Qt.resolvedUrl("PlatesList.qml"))
             }
-            MenuItem {
-                text: qsTr("Einstellungen")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }
+//            MenuItem {
+//                text: qsTr("Einstellungen")
+//                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+//            }
         }
 
         // Tell SilicaFlickable the height of its content.

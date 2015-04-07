@@ -15,10 +15,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Einstellungen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>SMS für Parkticket erstellen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -47,17 +43,6 @@
     </message>
     <message>
         <source>Kennzeichen</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SettingsPage</name>
-    <message>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Einstellungen zurücksetzen</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

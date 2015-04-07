@@ -28,9 +28,7 @@ ListModel {
                                 console.log("Loaded: ", res.rows.item(i).number, res.rows.item(i).desc, res.rows.item(i).current)
                                 append({"number": res.rows.item(i).number, "desc":res.rows.item(i).desc})
                                 if (res.rows.item(i).current) currentIndex = i
-                            }}
-                        else {
-                            append({"number": "MD287IM", "desc":"meins"})
+                            }
                         }
                         loadingDb = false
                     }
