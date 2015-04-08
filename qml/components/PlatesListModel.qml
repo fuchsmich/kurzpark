@@ -40,6 +40,7 @@ ListModel {
         var db = LocalStorage.openDatabaseSync(dbName, dbVersion, dbDesc, 1000000);
         db.transaction(
                     function(tx) {
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS NumberPlates(number TEXT, desc TEXT, current INTEGER)');
                         tx.executeSql('DELETE FROM NumberPlates');
                         for(var i=0; i < count; i++) {
                             tx.executeSql('INSERT INTO NumberPlates VALUES(?, ?, ?)', [ get(i).number, get(i).desc, (i===currentIndex)])
@@ -61,10 +62,12 @@ ListModel {
 
     }
     Component.onCompleted: {
-//        clearDB()
+        clearDB()
         load()
     }
 //    onRowsInserted: save()
-    onCountChanged: if (!loadingDb) save();
+    onCountChanged: if (!loadingDb) {
+                        save();
+                    }
     onDataChanged: if (!loadingDb) save();
 }

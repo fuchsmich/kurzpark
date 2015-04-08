@@ -12,22 +12,18 @@ Page {
 
     id: page
 
-//    PlatesData {
-//        id: platesData
-//    }
 
     SilicaListView {
-        id: listView
         PullDownMenu {
             MenuItem {
                 text: qsTr("Kennzeichen hinzufügen")
                 onClicked: {
-                    platesLM.append({"number": "ASDASD"+platesLM.count, "desc":"deins"})
-//                    platesLM.save()
+                    platesLM.append({"number": "ASDASD"+platesLM.count, "desc":"desc"})
                 }
-
             }
         }
+
+        id: listView
         model: platesLM
         anchors.fill: parent
         header: PageHeader {
@@ -46,19 +42,15 @@ Page {
                     width: page.width*0.4
                     id: plateTf
                     text: number
-//                    anchors.verticalCenter: parent.verticalCenter
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     readOnly: true
                     validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
-                    //                onAccepted: { readOnly = true }
-                    //                onAcceptableInputChanged: { readOnly = true }
                 }
                 TextField {
                     width: page.width*0.4
                     id: descTf
                     text: desc
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-//                    anchors.verticalCenter: parent.verticalCenter
                     font.italic: true
                     readOnly: true
                 }
@@ -67,7 +59,7 @@ Page {
                     icon.source: "image://theme/icon-cover-next"
                     icon.width: Theme.iconSizeSmall
                     icon.height: Theme.iconSizeSmall
-                    width: Theme.iconSizeSmall + Theme.paddingSmall
+//                    width: Theme.iconSizeSmall + Theme.paddingSmall
 //                    text: "Save"
                     visible: false
                     onClicked: {
@@ -80,18 +72,15 @@ Page {
             menu: Component {
                 ContextMenu {
                     MenuItem {
-                        text: "Bearbeiten"
+                        text: qsTr("Bearbeiten")
                         onClicked: {
                             plateTf.readOnly = descTf.readOnly = false
                             saveBtn.visible = true
                         }
                     }
                     MenuItem {
-                        text: "Entfernen"
+                        text: qsTr("Entfernen")
                         onClicked: remove();
-                    }
-                    MenuItem {
-                        text: "Als Standard setzen"
                     }
                 }
             }

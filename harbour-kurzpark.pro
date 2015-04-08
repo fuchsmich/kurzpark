@@ -23,7 +23,6 @@ OTHER_FILES += qml/harbour-kurzpark.qml \
     rpm/harbour-kurzpark.yaml \
     translations/*.ts \
     harbour-kurzpark.desktop \
-    qml/components/Settings.qml \
     qml/components/PlatesListModel.qml \
     qml/components/CityListModel.qml \
     qml/pages/CoverPage.qml \

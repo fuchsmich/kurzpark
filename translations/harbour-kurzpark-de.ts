@@ -35,19 +35,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ort:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Autonummer:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Zeit:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Kosten: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kennzeichen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zeit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -59,6 +59,14 @@
     </message>
     <message>
         <source>Kennzeichen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bearbeiten</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Entfernen</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
