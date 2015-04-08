@@ -26,10 +26,16 @@ Page {
 
     signal plChanged()
 
-    Component.onCompleted: {
-//        relay.
+    onPlChanged: {
+        plateNumber = platesLM.get(platesLM.currentIndex).number
+        platesLM.save()
     }
 
+
+    Component.onCompleted: {
+        platesLM.dataChanged.connect(plChanged)
+        platesLM.countChanged.connect(plChanged)
+    }
 
 //    Settings {
 //        id: settings
@@ -98,11 +104,8 @@ Page {
                 }
 
                 onCurrentIndexChanged: {
-                    plateNumber = platesLM.get(currentIndex).number
-//                    console.log(currentItem, currentIndex)
-//                    plateNumber = currentItem.number //!!geht so nicht
                     platesLM.currentIndex = currentIndex
-                    platesLM.save()
+                    page.plChanged()
                 }
             }
 
