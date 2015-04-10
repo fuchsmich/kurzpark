@@ -8,6 +8,7 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* 2015-04-07 Michael Fuchs <michfu@gmx.at> 0.1-1
-- First Version for warehouse
+* Fri Apr 10 2015 Michael Fuchs <michfu@gmx.at> 0.1-2
+- Disable translation
+- Improve behaviour on first start and empty number plate list
 
