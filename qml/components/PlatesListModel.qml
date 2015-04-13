@@ -62,16 +62,16 @@ ListModel {
 
     }
     Component.onCompleted: {
-        clearDB()
+//        clearDB()
         load()
     }
 //    onRowsInserted: save()
     onCountChanged: if (!loadingDb) {
                         save();
-                        console.log("PL count changed.")
+//                        console.log("PL count changed.")
                     }
     onDataChanged: if (!loadingDb) {
-                       console.log("PL data changed.")
+//                       console.log("PL data changed.")
                        save();
                    }
 }

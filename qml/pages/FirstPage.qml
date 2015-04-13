@@ -83,11 +83,13 @@ Page {
                     cityLM.currentTimeIndex = 0
                     city = cityLM.get(currentIndex).text
                     timeList = cityLM.get(currentIndex).timeList
+                    timeContainer.state = cityLM.get(currentIndex).timeModel
                 }
             }
 
             ComboBox {
                 width: parent.width
+                x: Theme.paddingLarge
                 label: qsTr("Kennzeichen")+":"
                 currentIndex: platesLM.currentIndex
                 menu: ContextMenu {
@@ -109,24 +111,65 @@ Page {
                 }
             }
 
-            ComboBox {
-                id: timeSelector
+            Row {
                 width: parent.width
-                label: qsTr("Zeit")+":"
-                currentIndex: cityLM.currentTimeIndex
-                menu: ContextMenu {
-                      Repeater {
-                          id: timeRep
-                          model: timeList
-                          MenuItem { text: model.time }
-                      }
-                 }
-                onCurrentIndexChanged: {
-                    cityLM.currentTimeIndex = currentIndex
-                    time = timeList.get(currentIndex).time
-                    costs = timeList.get(currentIndex).costs
+                x: Theme.paddingLarge
+                id: timeContainer
+                state: "discrete"
+
+                ComboBox {
+                    id: timeSelector
+                    width: parent.width
+                    label: qsTr("Zeit")+":"
+                    currentIndex: cityLM.currentTimeIndex
+                    menu: ContextMenu {
+                          Repeater {
+                              id: timeRep
+                              model: timeList
+                              MenuItem { text: model.time }
+                          }
+                     }
+                    onCurrentIndexChanged: {
+                        cityLM.currentTimeIndex = currentIndex
+                        time = timeList.get(currentIndex).time
+                        costs = timeList.get(currentIndex).costs
+                    }
                 }
+
+                    Slider {
+                        width: parent.width
+                        id: timeSlider
+                        minimumValue: timeList.get(0).time
+                        maximumValue: timeList.get(1).time
+                        visible: false
+                    }
+
+                states: [
+                    State {
+                        name: "discrete"
+                        PropertyChanges {
+                            target: timeSelector
+                            visible: true
+                        }
+                        PropertyChanges {
+                            target: timeSlider
+                            visible: false
+                        }
+                    },
+                    State {
+                        name: "floating"
+                        PropertyChanges {
+                            target: timeSelector
+                            visible: false
+                        }
+                        PropertyChanges {
+                            target: timeSlider
+                            visible: true
+                        }
+                    }
+                ]
             }
+
 
             Button {
 //                text: qsTr("SMS senden")

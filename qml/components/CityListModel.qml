@@ -62,6 +62,7 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Wien";
+        timeModel: "discrete";
         timeList: [
             ListElement{time: 15; costs: 0},
             ListElement{time: 30; costs: 1},
@@ -77,6 +78,7 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Moedling";
+        timeModel: "discrete";
         timeList: [
             ListElement{time: 30; costs: 0.5},
             ListElement{time: 60; costs: 1},
@@ -92,6 +94,7 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Perchtoldsdorf";
+        timeModel: "discrete";
         timeList: [
             ListElement{time: 15; costs: 0},
             ListElement{time: 30; costs: 0.5},
@@ -102,37 +105,34 @@ ListModel {
             ListElement{time: 180; costs: 3.0}
         ]
     }
-//    ListElement {
-//        name: "Salzburg";
-//        phoneNumbers:[
-//            ListElement{number: "+43 800 664 4242"}
-//        ]
-//        prefix: "Start"
-//        zoneList: [
- //      ListElement{name: "Zone 1"; text: "Z1"}
-//            ]
-//        text: "Salzburg";
-//        timeList: [   ]
-//    }
-//        ListElement { name: "Amstetten"; time: "1"  }
-//        ListElement { name: "Bregenz"; time: "1"   }
-//        ListElement { name: "Eisenstadt"; time: "1"   }
-//        ListElement { name: "Gleisdorf"; time: "1"   }
-//        ListElement { name: "Graz"; time: "1"   }
-//        ListElement { name: "Klagenfurt"; time: "1"   }
-//        ListElement { name: "Korneuburg"; time: "1"   }
-//        ListElement { name: "Linz"; time: "1" }
-//        ListElement { name: "Mödling"; time: "1" }
-//        ListElement { name: "Neusiedl am See"; time: "1" }
-//        ListElement { name: "Perchtoldsdorf"; time: "1" }
-//        ListElement { name: "Salzburg"; time: "1" }
-//        ListElement { name: "Schwechat"; time: "1" }
-//        ListElement { name: "Spittal a. d. Drau"; time: "1" }
-//        ListElement { name: "St. Pölten"; time: "1" }
-//        ListElement { name: "Stockerau"; time: "1" }
-//        ListElement { name: "Villach"; time: "1" }
-//        ListElement { name: "Villach"; time: "1" }
-//        ListElement { name: "Weiz"; time: "1" }
-//        ListElement { name: "Wels"; time: "1" }
-//        ListElement { name: "Wolfsberg"; time: "1" }
+    ListElement {
+        name: "Amstetten";
+        phoneNumbers:[
+            ListElement{number: "+436646606000"}
+        ]
+        text: "Amstetten";
+        timeModel: "discrete";
+        timeList: [
+            ListElement{time: 10; costs: 0},
+            ListElement{time: 30; costs: 0.5},
+            ListElement{time: 60; costs: 1},
+            ListElement{time: 90; costs: 1.5},
+            ListElement{time: 120; costs: 2},
+            ListElement{time: 150; costs: 2.5},
+            ListElement{time: 180; costs: 3.0}
+        ]
+    }
+    ListElement {
+        name: "Gleisdorf";
+        phoneNumbers:[
+            ListElement{number: "+436646606000"}
+        ]
+        text: "Gleisdorf";
+        timeModel: "floating";
+        timeList: [
+            ListElement{time: 30; costs: 0},
+            ListElement{time: 180; costs: 2.5}
+        ]
+    }
+
 }

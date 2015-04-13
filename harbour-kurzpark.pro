@@ -21,7 +21,7 @@ OTHER_FILES += qml/harbour-kurzpark.qml \
     rpm/harbour-kurzpark.changes.in \
     rpm/harbour-kurzpark.spec \
     rpm/harbour-kurzpark.yaml \
-    translations/*.ts \
+    #translations/*.ts \
     harbour-kurzpark.desktop \
     qml/components/PlatesListModel.qml \
     qml/components/CityListModel.qml \
@@ -30,11 +30,11 @@ OTHER_FILES += qml/harbour-kurzpark.qml \
 
 # to disable building translations every time, comment out the
 # following CONFIG line
-CONFIG += sailfishapp_i18n
+#CONFIG += sailfishapp_i18n
 
 # German translation is enabled as an example. If you aren't
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-kurzpark-de.ts
+#TRANSLATIONS += translations/harbour-kurzpark-de.ts
 
