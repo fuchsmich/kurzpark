@@ -18,7 +18,6 @@ SOURCES += src/harbour-kurzpark.cpp
 
 OTHER_FILES += qml/harbour-kurzpark.qml \
     qml/pages/FirstPage.qml \
-    rpm/harbour-kurzpark.changes.in \
     rpm/harbour-kurzpark.spec \
     rpm/harbour-kurzpark.yaml \
     #translations/*.ts \
@@ -26,7 +25,8 @@ OTHER_FILES += qml/harbour-kurzpark.qml \
     qml/components/PlatesListModel.qml \
     qml/components/CityListModel.qml \
     qml/pages/CoverPage.qml \
-    qml/pages/PlatesList.qml
+    qml/pages/PlatesList.qml \
+    rpm/harbour-kurzpark.changes
 
 # to disable building translations every time, comment out the
 # following CONFIG line
