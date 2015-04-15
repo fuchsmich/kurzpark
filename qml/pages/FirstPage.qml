@@ -37,10 +37,6 @@ Page {
         platesLM.countChanged.connect(plChanged)
     }
 
-//    Settings {
-//        id: settings
-//    }
-
 
     SilicaFlickable {
         anchors.fill: parent
@@ -50,10 +46,6 @@ Page {
                 text: qsTr("Kennzeichen bearbeiten")
                 onClicked: pageStack.push(Qt.resolvedUrl("PlatesList.qml"))
             }
-//            MenuItem {
-//                text: qsTr("Einstellungen")
-//                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-//            }
         }
 
         contentHeight: column.height
@@ -73,17 +65,17 @@ Page {
                 label: qsTr("Ort")+":"
                 currentIndex: cityLM.currentIndex
                 menu: ContextMenu {
-                      Repeater {
-                           model: cityLM
-                           MenuItem { text: model.name }
-                      }
-                 }
+                    Repeater {
+                        model: cityLM
+                        MenuItem { text: model.name }
+                    }
+                }
                 onCurrentIndexChanged: {
                     cityLM.currentIndex = currentIndex
                     cityLM.currentTimeIndex = 0
-                    city = cityLM.get(currentIndex).text
-                    timeList = cityLM.get(currentIndex).timeList
-                    timeContainer.state = cityLM.get(currentIndex).timeModel
+                    //                    city = cityLM.get(currentIndex).text
+                    //                    timeList = cityLM.get(currentIndex).timeList
+                    //                    timeContainer.state = cityLM.get(currentIndex).timeModel
                 }
             }
 
@@ -94,9 +86,9 @@ Page {
                 currentIndex: platesLM.currentIndex
                 menu: ContextMenu {
                     Repeater {
-                         id:plateRep
-                         model: platesLM
-                         MenuItem { text: model.number + " <i>(" + model.desc +")</i>"}
+                        id:plateRep
+                        model: platesLM
+                        MenuItem { text: model.number + " <i>(" + model.desc +")</i>"}
                     }
                 }
                 onClicked: {
@@ -111,68 +103,31 @@ Page {
                 }
             }
 
-            Row {
+
+            ComboBox {
+                id: timeSelector
                 width: parent.width
                 x: Theme.paddingLarge
-                id: timeContainer
-                state: "discrete"
-
-                ComboBox {
-                    id: timeSelector
-                    width: parent.width
-                    label: qsTr("Zeit")+":"
-                    currentIndex: cityLM.currentTimeIndex
-                    menu: ContextMenu {
-                          Repeater {
-                              id: timeRep
-                              model: timeList
-                              MenuItem { text: model.time }
-                          }
-                     }
-                    onCurrentIndexChanged: {
-                        cityLM.currentTimeIndex = currentIndex
-                        time = timeList.get(currentIndex).time
-                        costs = timeList.get(currentIndex).costs
+                label: qsTr("Zeit")+":"
+                currentIndex: cityLM.currentTimeIndex
+                menu: ContextMenu {
+                    Repeater {
+                        id: timeRep
+                        model: timeList
+                        MenuItem { text: model.time }
                     }
                 }
-
-                    Slider {
-                        width: parent.width
-                        id: timeSlider
-                        minimumValue: timeList.get(0).time
-                        maximumValue: timeList.get(1).time
-                        visible: false
-                    }
-
-                states: [
-                    State {
-                        name: "discrete"
-                        PropertyChanges {
-                            target: timeSelector
-                            visible: true
-                        }
-                        PropertyChanges {
-                            target: timeSlider
-                            visible: false
-                        }
-                    },
-                    State {
-                        name: "floating"
-                        PropertyChanges {
-                            target: timeSelector
-                            visible: false
-                        }
-                        PropertyChanges {
-                            target: timeSlider
-                            visible: true
-                        }
-                    }
-                ]
+                onCurrentIndexChanged: {
+                    cityLM.currentTimeIndex = currentIndex
+                    //                        time = timeList.get(currentIndex).time
+                    //                        costs = timeList.get(currentIndex).costs
+                }
             }
 
 
+
             Button {
-//                text: qsTr("SMS senden")
+                //                text: qsTr("SMS senden")
                 text: smsText
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {

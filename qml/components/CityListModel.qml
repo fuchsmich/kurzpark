@@ -56,13 +56,13 @@ ListModel {
 
 
     ListElement {
+        // Zeit Stadt*KZ
         name: "Wien";
         phoneNumbers: [
             ListElement{number: "+436646600990"},
             ListElement{number: "+436646606000"}
         ]
         text: "Wien";
-        timeModel: "discrete";
         timeList: [
             ListElement{time: 15; costs: 0},
             ListElement{time: 30; costs: 1},
@@ -72,13 +72,87 @@ ListModel {
             ListElement{time: 180; costs: 6}
         ]
     }
+
+    ListElement {
+        // Zeit Stadt*KZ
+        name: "Amstetten";
+        phoneNumbers:[
+            ListElement{number: "+436646606000"}
+        ]
+        text: "Amstetten";
+        timeList: [
+            ListElement{time: 10; costs: 0},
+            ListElement{time: 30; costs: 0.5},
+            ListElement{time: 60; costs: 1},
+            ListElement{time: 90; costs: 1.5},
+            ListElement{time: 120; costs: 2},
+            ListElement{time: 150; costs: 2.5},
+            ListElement{time: 180; costs: 3.0}
+        ]
+    }
+
+    ListElement {
+        // Zeit Zone Stadt*KZ
+        name: "Baden";
+        phoneNumbers:[
+            ListElement{number: "+438006644242"}
+        ]
+        text: "Baden";
+        timeList: [
+            ListElement{time: 15; zone: "Z1"; costs: 0},
+            ListElement{time: 30; zone: "Z1"; costs: 0.5},
+            ListElement{time: 60; zone: "Z1"; costs: 1},
+            ListElement{time: 90; zone: "Z1"; costs: 1.5},
+            ListElement{time: 15; zone: "Z2"; costs: 0},
+            ListElement{time: 30; zone: "Z2"; costs: 0.5},
+            ListElement{time: 60; zone: "Z2"; costs: 1},
+            ListElement{time: 90; zone: "Z2"; costs: 1.5},
+            ListElement{time: 120; zone: "Z2"; costs: 2},
+            ListElement{time: 150; zone: "Z2"; costs: 2.5},
+            ListElement{time: 180; zone: "Z2"; costs: 3.0}
+        ]
+    }
+
+    ListElement {
+        // Start Zone Stadt*KZ
+        name: "Bludenz";
+        phoneNumbers:[
+            ListElement{number: "+438006644242"}
+        ]
+        text: "Bludenz";
+        timeList: [
+            ListElement{time: "Start"; zone: "Z1"; costs: 0}
+        ]
+    }
+
+    ListElement {
+        // ZeitZone Stadt*KZ
+        name: "Bregenz";
+        phoneNumbers:[
+            ListElement{number: "+436646606000"}
+        ]
+        text: "Bregenz";
+        timeList: [
+            ListElement{time: 17; zone: "A"; costs: 0},
+            ListElement{time: 30; zone: "A"; costs: 0.5},
+            ListElement{time: 60; zone: "A"; costs: 1},
+            ListElement{time: 90; zone: "A"; costs: 1.5},
+            ListElement{time: 15; zone: "AA"; costs: 0},
+            ListElement{time: 30; zone: "AA"; costs: 0.5},
+            ListElement{time: 60; zone: "AA"; costs: 1},
+            ListElement{time: 90; zone: "AA"; costs: 1.5},
+            ListElement{time: 120; zone: "Z2"; costs: 2},
+            ListElement{time: 150; zone: "Z2"; costs: 2.5},
+            ListElement{time: 180; zone: "Z2"; costs: 3.0}
+        ]
+    }
+
     ListElement {
         name: "Mödling";
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
         text: "Moedling";
-        timeModel: "discrete";
         timeList: [
             ListElement{time: 30; costs: 0.5},
             ListElement{time: 60; costs: 1},
@@ -88,32 +162,15 @@ ListModel {
             ListElement{time: 180; costs: 3.0}
         ]
     }
+
     ListElement {
         name: "Perchtoldsdorf";
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
         text: "Perchtoldsdorf";
-        timeModel: "discrete";
         timeList: [
             ListElement{time: 15; costs: 0},
-            ListElement{time: 30; costs: 0.5},
-            ListElement{time: 60; costs: 1},
-            ListElement{time: 90; costs: 1.5},
-            ListElement{time: 120; costs: 2},
-            ListElement{time: 150; costs: 2.5},
-            ListElement{time: 180; costs: 3.0}
-        ]
-    }
-    ListElement {
-        name: "Amstetten";
-        phoneNumbers:[
-            ListElement{number: "+436646606000"}
-        ]
-        text: "Amstetten";
-        timeModel: "discrete";
-        timeList: [
-            ListElement{time: 10; costs: 0},
             ListElement{time: 30; costs: 0.5},
             ListElement{time: 60; costs: 1},
             ListElement{time: 90; costs: 1.5},
@@ -131,6 +188,15 @@ ListModel {
         timeModel: "floating";
         timeList: [
             ListElement{time: 30; costs: 0},
+            ListElement{time: 45; costs: 0},
+            ListElement{time: 60; costs: 1},
+            ListElement{time: 75; costs: 1},
+            ListElement{time: 90; costs: 1.5},
+            ListElement{time: 105; costs: 1.5},
+            ListElement{time: 120; costs: 2},
+            ListElement{time: 135; costs: 2},
+            ListElement{time: 150; costs: 2.5},
+            ListElement{time: 165; costs: 2.5},
             ListElement{time: 180; costs: 2.5}
         ]
     }
