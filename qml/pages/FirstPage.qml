@@ -11,31 +11,19 @@ import "../components"
 
 Page {
     id: page
-    property var timeList: cityLM.get(cityLM.currentIndex).timeList
-    property string city: cityLM.get(cityLM.currentIndex).text
-    property string time: timeList.get(cityLM.currentTimeIndex).time
-    property string phoneNumber: cityLM.get(cityLM.currentIndex).phoneNumbers.get(0).number
-    property real costs: timeList.get(cityLM.currentTimeIndex).costs
+//    property var timeList: cityLM.currentZone.timeList
+    property string city: cityLM.currentCity.text
+    property string zone: cityLM.currentZone.zone
+    property string time: cityLM.currentTime.time
+    property string phoneNumber: cityLM.currentCity.phoneNumbers.get(0).number
+    property string costs: cityLM.currentTime.costs.toLocaleString(Qt.locale()) + " €"
 
-    property string plateNumber // platesLM.get(platesLM.currentIndex).number
+    property string plateNumber: platesLM.currentPlate
 
     property string smsText: time + " " + city + "*" + plateNumber
 
     onSmsTextChanged: app.smsText = smsText
     onPhoneNumberChanged: app.phoneNumber = phoneNumber
-
-    signal plChanged()
-
-    onPlChanged: {
-        plateNumber = platesLM.get(platesLM.currentIndex).number
-        platesLM.save()
-    }
-
-
-    Component.onCompleted: {
-        platesLM.dataChanged.connect(plChanged)
-        platesLM.countChanged.connect(plChanged)
-    }
 
 
     SilicaFlickable {
@@ -60,26 +48,6 @@ Page {
             }
 
             ComboBox {
-                id: citySelector
-                width: parent.width
-                label: qsTr("Ort")+":"
-                currentIndex: cityLM.currentIndex
-                menu: ContextMenu {
-                    Repeater {
-                        model: cityLM
-                        MenuItem { text: model.name }
-                    }
-                }
-                onCurrentIndexChanged: {
-                    cityLM.currentIndex = currentIndex
-                    cityLM.currentTimeIndex = 0
-                    //                    city = cityLM.get(currentIndex).text
-                    //                    timeList = cityLM.get(currentIndex).timeList
-                    //                    timeContainer.state = cityLM.get(currentIndex).timeModel
-                }
-            }
-
-            ComboBox {
                 width: parent.width
                 x: Theme.paddingLarge
                 label: qsTr("Kennzeichen")+":"
@@ -99,10 +67,55 @@ Page {
 
                 onCurrentIndexChanged: {
                     platesLM.currentIndex = currentIndex
-                    page.plChanged()
+//                    page.plChanged()
                 }
             }
 
+
+            ComboBox {
+                id: citySelector
+                width: parent.width
+                x: Theme.paddingLarge
+                label: qsTr("Ort")+":"
+                currentIndex: cityLM.currentIndex
+                menu: ContextMenu {
+                    Repeater {
+                        model: cityLM
+                        MenuItem { text: model.name }
+                    }
+                }
+                onCurrentIndexChanged: {
+                    cityLM.currentTimeIndex = 0
+                    cityLM.currentTimeZoneIndex = 0
+                    cityLM.currentIndex = currentIndex
+                }
+            }
+
+            Button {
+//                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Info")
+            }
+
+            ComboBox {
+//                id: zoneSelector
+                width: parent.width
+                x: Theme.paddingLarge
+                label: qsTr("Zone")+":"
+//                visible: (cityLM.currentCity.timeZoneList.count > 1)
+                enabled: (cityLM.currentCity.timeZoneList.count > 1)
+                currentIndex: cityLM.currentTimeZoneIndex
+                menu: ContextMenu {
+                    Repeater {
+                        model: cityLM.currentCity.timeZoneList
+                        MenuItem { text: model.zone }
+                    }
+                }
+                onCurrentIndexChanged: {
+                    cityLM.currentTimeIndex = 0
+                    cityLM.currentTimeZoneIndex = currentIndex
+                }
+            }
 
             ComboBox {
                 id: timeSelector
@@ -113,7 +126,7 @@ Page {
                 menu: ContextMenu {
                     Repeater {
                         id: timeRep
-                        model: timeList
+                        model: cityLM.currentZone.timeList
                         MenuItem { text: model.time }
                     }
                 }
@@ -137,7 +150,7 @@ Page {
 
             }
             Label {
-                text: qsTr("Kosten: ") + costs.toLocaleString(Qt.locale()) + " €"
+                text: qsTr("Kosten: ") + costs
                 anchors.horizontalCenter: parent.horizontalCenter
             }
         }

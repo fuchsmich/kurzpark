@@ -11,7 +11,8 @@ ListModel {
     property string dbName: "KurzParkDB"
     property string dbDesc: "KurzParkDB"
     property string dbVersion: "1.0"
-    property int currentIndex: 0
+    property int currentIndex: -1
+    property string currentPlate: get(currentIndex).number
     property bool loadingDb: false
 
     function load() {
@@ -36,7 +37,7 @@ ListModel {
     }
 
     function save() {
-//        clearDB()
+        //        clearDB()
         var db = LocalStorage.openDatabaseSync(dbName, dbVersion, dbDesc, 1000000);
         db.transaction(
                     function(tx) {
@@ -62,16 +63,22 @@ ListModel {
 
     }
     Component.onCompleted: {
-//        clearDB()
+        //        clearDB()
         load()
+        //        currentPlate = get(currentIndex).number
     }
-//    onRowsInserted: save()
+    //    onRowsInserted: save()
     onCountChanged: if (!loadingDb) {
                         save();
-//                        console.log("PL count changed.")
+                        //                        console.log("PL count changed.")
                     }
     onDataChanged: if (!loadingDb) {
-//                       console.log("PL data changed.")
+                       //                       console.log("PL data changed.")
                        save();
                    }
+
+    onCurrentIndexChanged: if (!loadingDb) {
+                               //                       console.log("PL data changed.")
+                               save();
+                           }
 }
