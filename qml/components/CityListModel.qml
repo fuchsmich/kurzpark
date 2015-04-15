@@ -71,7 +71,7 @@ ListModel {
         timeZoneList: [
             ListElement{zone: "none";
                 timeList: [
-                    ListElement{time: 15; costs: 0},
+                    ListElement{time: "15"; costs: 0},
                     ListElement{time: 30; costs: 1},
                     ListElement{time: 60; costs: 2},
                     ListElement{time: 90; costs: 3},
@@ -142,7 +142,25 @@ ListModel {
         ]
         text: "Bludenz";
         timeZoneList: [
-            ListElement{zone: "none";
+            ListElement{zone: "Z1";
+                timeList: [
+                    ListElement{time: "Start"; costs: 0},
+                    ListElement{time: "Stop"; costs: 0}
+                ]
+            },
+            ListElement{zone: "Z2";
+                timeList: [
+                    ListElement{time: "Start"; costs: 0},
+                    ListElement{time: "Stop"; costs: 0}
+                ]
+            },
+            ListElement{zone: "Z2a";
+                timeList: [
+                    ListElement{time: "Start"; costs: 0},
+                    ListElement{time: "Stop"; costs: 0}
+                ]
+            },
+            ListElement{zone: "Z3";
                 timeList: [
                     ListElement{time: "Start"; costs: 0},
                     ListElement{time: "Stop"; costs: 0}

@@ -11,7 +11,7 @@ import "../components"
 
 Page {
     id: page
-//    property var timeList: cityLM.currentZone.timeList
+    //    property var timeList: cityLM.currentZone.timeList
     property string city: cityLM.currentCity.text
     property string zone: cityLM.currentZone.zone
     property string time: cityLM.currentTime.time
@@ -25,6 +25,11 @@ Page {
     onSmsTextChanged: app.smsText = smsText
     onPhoneNumberChanged: app.phoneNumber = phoneNumber
 
+    function outputList(list) {
+        for (var i=0; i < list.count; i++) {
+            console.log(list.get(i))
+        }
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -49,7 +54,7 @@ Page {
 
             ComboBox {
                 width: parent.width
-                x: Theme.paddingLarge
+//                x: Theme.paddingLarge
                 label: qsTr("Kennzeichen")+":"
                 currentIndex: platesLM.currentIndex
                 menu: ContextMenu {
@@ -67,77 +72,80 @@ Page {
 
                 onCurrentIndexChanged: {
                     platesLM.currentIndex = currentIndex
-//                    page.plChanged()
                 }
             }
 
-
-            ComboBox {
-                id: citySelector
-                width: parent.width
-                x: Theme.paddingLarge
-                label: qsTr("Ort")+":"
-                currentIndex: cityLM.currentIndex
-                menu: ContextMenu {
-                    Repeater {
-                        model: cityLM
-                        MenuItem { text: model.name }
-                    }
-                }
-                onCurrentIndexChanged: {
-                    cityLM.currentTimeIndex = 0
-                    cityLM.currentTimeZoneIndex = 0
-                    cityLM.currentIndex = currentIndex
-                }
-            }
-
-            Button {
-//                width: parent.width
+            Row {
+                spacing: Theme.paddingLarge
+//                x: Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Info")
-            }
-
-            ComboBox {
-//                id: zoneSelector
-                width: parent.width
-                x: Theme.paddingLarge
-                label: qsTr("Zone")+":"
-//                visible: (cityLM.currentCity.timeZoneList.count > 1)
-                enabled: (cityLM.currentCity.timeZoneList.count > 1)
-                currentIndex: cityLM.currentTimeZoneIndex
-                menu: ContextMenu {
-                    Repeater {
-                        model: cityLM.currentCity.timeZoneList
-                        MenuItem { text: model.zone }
+                ComboBox {
+                    id: citySelector
+                    width: page.width/2
+                    label: qsTr("Ort")+":"
+                    currentIndex: cityLM.currentIndex
+                    menu: ContextMenu {
+                        Repeater {
+                            model: cityLM
+                            MenuItem { text: model.name }
+                        }
+                    }
+                    onCurrentIndexChanged: {
+                        cityLM.currentTimeIndex = 0
+                        cityLM.currentTimeZoneIndex = 0
+                        cityLM.currentIndex = currentIndex
                     }
                 }
-                onCurrentIndexChanged: {
-                    cityLM.currentTimeIndex = 0
-                    cityLM.currentTimeZoneIndex = currentIndex
+
+                Button {
+//                    width: page.width/4
+//                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr("Info")
                 }
             }
-
-            ComboBox {
-                id: timeSelector
-                width: parent.width
-                x: Theme.paddingLarge
-                label: qsTr("Zeit")+":"
-                currentIndex: cityLM.currentTimeIndex
-                menu: ContextMenu {
-                    Repeater {
-                        id: timeRep
-                        model: cityLM.currentZone.timeList
-                        MenuItem { text: model.time }
+            Row {
+//                x: Theme.paddingLarge
+                ComboBox {
+                    id: zoneSelector
+                    width: page.width/2
+                    label: qsTr("Zone")+":"
+                    //                visible: (cityLM.currentCity.timeZoneList.count > 1)
+                    enabled: (cityLM.currentCity.timeZoneList.count > 1)
+                    currentIndex: cityLM.currentTimeZoneIndex
+                    menu: ContextMenu {
+                        Repeater {
+                            model: cityLM.currentCity.timeZoneList
+                            MenuItem { text: model.zone }
+                        }
+                    }
+                    onCurrentIndexChanged: {
+                        cityLM.currentTimeIndex = 0
+                        cityLM.currentTimeZoneIndex = currentIndex
                     }
                 }
-                onCurrentIndexChanged: {
-                    cityLM.currentTimeIndex = currentIndex
-                    //                        time = timeList.get(currentIndex).time
-                    //                        costs = timeList.get(currentIndex).costs
+
+                ComboBox {
+                    id: timeSelector
+                    width: page.width/2
+//                    x: Theme.paddingLarge
+                    label: qsTr("Zeit")+":"
+                    currentIndex: cityLM.currentTimeIndex
+                    menu: ContextMenu {
+                        Repeater {
+                            id: timeRep
+                            model: cityLM.currentZone.timeList
+                            MenuItem { text: model.time }
+                        }
+                    }
+                    onCurrentIndexChanged: {
+                        cityLM.currentTimeIndex = currentIndex
+                    }
+//                    onClicked: {
+//                        outputList(cityLM.currentZone.timeList)
+//                    }
                 }
+
             }
-
-
 
             Button {
                 //                text: qsTr("SMS senden")
