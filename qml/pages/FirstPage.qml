@@ -14,13 +14,13 @@ Page {
     //    property var timeList: cityLM.currentZone.timeList
     property string city: cityLM.currentCity.text
     property string zone: cityLM.currentZone.zone
-    property string time: cityLM.currentTime.time
+    property string time:  cityLM.currentTime.time
     property string phoneNumber: cityLM.currentCity.phoneNumbers.get(0).number
     property string costs: cityLM.currentTime.costs.toLocaleString(Qt.locale()) + " €"
 
     property string plateNumber: platesLM.currentPlate
 
-    property string smsText: time + " " + city + "*" + plateNumber
+    property string smsText: time + zone + city + "*" + plateNumber
 
     onSmsTextChanged: app.smsText = smsText
     onPhoneNumberChanged: app.phoneNumber = phoneNumber
@@ -29,6 +29,16 @@ Page {
         for (var i=0; i < list.count; i++) {
             console.log(list.get(i))
         }
+    }
+
+    function timeFormat(minutes) {
+        var hh = Math.floor(minutes/60)
+        var mm = minutes%60
+
+        hh = hh < 10 ? "0"+ hh : hh
+        mm = mm < 10 ? "0" + mm : mm
+
+        return "(" + hh + ":" + mm + ")"
     }
 
     SilicaFlickable {
@@ -54,7 +64,7 @@ Page {
 
             ComboBox {
                 width: parent.width
-//                x: Theme.paddingLarge
+                //                x: Theme.paddingLarge
                 label: qsTr("Kennzeichen")+":"
                 currentIndex: platesLM.currentIndex
                 menu: ContextMenu {
@@ -77,8 +87,8 @@ Page {
 
             Row {
                 spacing: Theme.paddingLarge
-//                x: Theme.paddingLarge
-                anchors.horizontalCenter: parent.horizontalCenter
+                //                x: Theme.paddingLarge
+//                anchors.horizontalCenter: parent.horizontalCenter
                 ComboBox {
                     id: citySelector
                     width: page.width/2
@@ -98,54 +108,100 @@ Page {
                 }
 
                 Button {
-//                    width: page.width/4
-//                    anchors.horizontalCenter: parent.horizontalCenter
+//                    anchors.right: parent.right
+                    width: page.width/3
+                    //                    anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("Info")
+                    onClicked: Qt.openUrlExternally("http://www.handyparken.at/handyparken/content/staedte/")
                 }
             }
-            Row {
-//                x: Theme.paddingLarge
-                ComboBox {
-                    id: zoneSelector
-                    width: page.width/2
-                    label: qsTr("Zone")+":"
-                    //                visible: (cityLM.currentCity.timeZoneList.count > 1)
-                    enabled: (cityLM.currentCity.timeZoneList.count > 1)
-                    currentIndex: cityLM.currentTimeZoneIndex
-                    menu: ContextMenu {
-                        Repeater {
-                            model: cityLM.currentCity.timeZoneList
-                            MenuItem { text: model.zone }
-                        }
-                    }
-                    onCurrentIndexChanged: {
-                        cityLM.currentTimeIndex = 0
-                        cityLM.currentTimeZoneIndex = currentIndex
+            //            Row {
+            //                x: Theme.paddingLarge
+            ComboBox {
+                id: zoneSelector
+                width: page.width //2
+                label: qsTr("Zone")+":"
+                //                visible: (cityLM.currentCity.timeZoneList.count > 1)
+                enabled: (cityLM.currentCity.timeZoneList.count > 1)
+                currentIndex: cityLM.currentTimeZoneIndex
+                menu: ContextMenu {
+                    Repeater {
+                        model: cityLM.currentCity.timeZoneList
+                        MenuItem { text: model.zone }
                     }
                 }
+                onCurrentIndexChanged: {
+                    cityLM.currentTimeIndex = 0
+                    cityLM.currentTimeZoneIndex = currentIndex
+                }
+            }
 
+            Loader {
+                id: timeLoader
+                width: page.width
+
+//                onLoaded: timeBinder.target = timeLoader.item
+            }
+
+            Binding {
+                id: timeBinder
+                property: "value"
+                value: page.time
+                when: page.state == "floating"
+            }
+
+            Component {
+                id: timeCBComponent
                 ComboBox {
-                    id: timeSelector
-                    width: page.width/2
-//                    x: Theme.paddingLarge
                     label: qsTr("Zeit")+":"
                     currentIndex: cityLM.currentTimeIndex
                     menu: ContextMenu {
                         Repeater {
                             id: timeRep
                             model: cityLM.currentZone.timeList
-                            MenuItem { text: model.time }
+                            MenuItem { text: model.time + " " + timeFormat(model.time) }
                         }
                     }
                     onCurrentIndexChanged: {
                         cityLM.currentTimeIndex = currentIndex
                     }
-//                    onClicked: {
-//                        outputList(cityLM.currentZone.timeList)
-//                    }
                 }
-
             }
+
+            Component {
+                id: timeStartStopComponent
+                Row {
+                    x: Theme.paddingLarge
+//                    anchors.horizontalCenter: parent.horizontalCenter
+//                    property bool start: cityLM.currentTimeIndex
+                    property string value: !cityLM.currentTimeIndex ? "Start" : "Stop"
+                    Button {
+//                        width: page.width/4
+                        text: "Start";
+                        enabled: cityLM.currentTimeIndex;
+                        onClicked: cityLM.currentTimeIndex = !cityLM.currentTimeIndex
+                    }
+                    Button {
+//                        width: page.width/4
+                        text: "Stop"
+                        enabled: !cityLM.currentTimeIndex;
+                        onClicked: cityLM.currentTimeIndex = !cityLM.currentTimeIndex
+                    }
+                }
+            }
+
+            Component {
+                id: timeSliderComponent
+                Slider {
+//                    id: timeSlider
+                    minimumValue: cityLM.currentZone.timeList.get(0).time
+                    maximumValue: cityLM.currentZone.timeList.get(1).time
+                    stepSize: cityLM.currentZone.timeList.get(2).time
+                    value: cityLM.currentTime.time //cityLM.currentZone.timeList.get(0).time
+                    valueText: value + " " + timeFormat(value)
+                }
+            }
+
 
             Button {
                 //                text: qsTr("SMS senden")
@@ -158,11 +214,31 @@ Page {
 
             }
             Label {
-                text: qsTr("Kosten: ") + costs
+                text: qsTr("Kosten") +": " + costs
                 anchors.horizontalCenter: parent.horizontalCenter
             }
         }
     }
+
+    state: cityLM.currentCity.timeModel
+
+    states: [
+        State {
+            name: "discrete"
+            PropertyChanges { target: timeLoader; sourceComponent: timeCBComponent }
+            PropertyChanges { target: page; time: cityLM.currentTime.time }
+        },
+        State {
+            name: "floating"
+            PropertyChanges { target: timeLoader; sourceComponent: timeSliderComponent }
+            PropertyChanges { target: page; time: timeLoader.item.value }
+        },
+        State {
+            name: "startstop"
+            PropertyChanges { target: timeLoader; sourceComponent: timeStartStopComponent }
+            PropertyChanges { target: page; time: timeLoader.item.value }
+        }
+    ]
 }
 
 

@@ -68,10 +68,11 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Wien";
+        timeModel: "discrete";
         timeZoneList: [
-            ListElement{zone: "none";
+            ListElement{zone: " ";
                 timeList: [
-                    ListElement{time: "15"; costs: 0},
+                    ListElement{time: 15; costs: 0},
                     ListElement{time: 30; costs: 1},
                     ListElement{time: 60; costs: 2},
                     ListElement{time: 90; costs: 3},
@@ -89,8 +90,9 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Amstetten";
+        timeModel: "discrete";
         timeZoneList: [
-            ListElement{zone: "none";
+            ListElement{zone: " ";
                 timeList: [
                     ListElement{time: 10; costs: 0},
                     ListElement{time: 30; costs: 0.5},
@@ -111,6 +113,7 @@ ListModel {
             ListElement{number: "+438006644242"}
         ]
         text: "Baden";
+        timeModel: "discrete";
         timeZoneList: [
             ListElement{zone: "Z1";
                 timeList: [
@@ -141,29 +144,30 @@ ListModel {
             ListElement{number: "+438006644242"}
         ]
         text: "Bludenz";
+        timeModel: "startstop";
         timeZoneList: [
-            ListElement{zone: "Z1";
+            ListElement{zone: " Z1";
                 timeList: [
-                    ListElement{time: "Start"; costs: 0},
-                    ListElement{time: "Stop"; costs: 0}
+                    ListElement{time: 0; costs: 0},
+                    ListElement{time: 1; costs: 0}
                 ]
             },
-            ListElement{zone: "Z2";
+            ListElement{zone: " Z2";
                 timeList: [
-                    ListElement{time: "Start"; costs: 0},
-                    ListElement{time: "Stop"; costs: 0}
+                    ListElement{time: 0; costs: 0},
+                    ListElement{time: 1; costs: 0}
                 ]
             },
-            ListElement{zone: "Z2a";
+            ListElement{zone: " Z2a";
                 timeList: [
-                    ListElement{time: "Start"; costs: 0},
-                    ListElement{time: "Stop"; costs: 0}
+                    ListElement{time: 0; costs: 0},
+                    ListElement{time: 1; costs: 0}
                 ]
             },
-            ListElement{zone: "Z3";
+            ListElement{zone: " Z3";
                 timeList: [
-                    ListElement{time: "Start"; costs: 0},
-                    ListElement{time: "Stop"; costs: 0}
+                    ListElement{time: 0; costs: 0},
+                    ListElement{time: 1; costs: 0}
                 ]
             }
         ]
@@ -176,6 +180,7 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Bregenz";
+        timeModel: "discrete";
         timeZoneList: [
             ListElement{zone: "A";
                 timeList: [
@@ -202,8 +207,9 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Moedling";
+        timeModel: "discrete";
         timeZoneList: [
-            ListElement{zone: "none";
+            ListElement{zone: " ";
                 timeList: [
                     ListElement{time: 30; costs: 0.5},
                     ListElement{time: 60; costs: 1},
@@ -222,8 +228,9 @@ ListModel {
             ListElement{number: "+436646606000"}
         ]
         text: "Perchtoldsdorf";
+        timeModel: "discrete";
         timeZoneList: [
-            ListElement{zone: "none";
+            ListElement{zone: " ";
                 timeList: [
                     ListElement{time: 15; costs: 0},
                     ListElement{time: 30; costs: 0.5},
@@ -244,19 +251,11 @@ ListModel {
         text: "Gleisdorf";
         timeModel: "floating";
         timeZoneList: [
-            ListElement{zone: "none";
+            ListElement{zone: " ";
                 timeList: [
                     ListElement{time: 30; costs: 0},
-                    ListElement{time: 45; costs: 0},
-                    ListElement{time: 60; costs: 1},
-                    ListElement{time: 75; costs: 1},
-                    ListElement{time: 90; costs: 1.5},
-                    ListElement{time: 105; costs: 1.5},
-                    ListElement{time: 120; costs: 2},
-                    ListElement{time: 135; costs: 2},
-                    ListElement{time: 150; costs: 2.5},
-                    ListElement{time: 165; costs: 2.5},
-                    ListElement{time: 180; costs: 2.5}
+                    ListElement{time: 180; costs: 2.5},
+                    ListElement{time: 10; costs: 2.5}
                 ]
             }
         ]
