@@ -16,11 +16,11 @@ Page {
     property string zone: cityLM.currentZone.zone
     property string time:  cityLM.currentTime.time
     property string phoneNumber: cityLM.currentCity.phoneNumbers.get(0).number
-    property string costs: cityLM.currentTime.costs.toLocaleString(Qt.locale()) + " €"
+    property string costs: timeLoader.item.costs
 
     property string plateNumber: platesLM.currentPlate
 
-    property string smsText: time + zone + city + "*" + plateNumber
+    property string smsText: time + zone + " " + city + "*" + plateNumber
 
     onSmsTextChanged: app.smsText = smsText
     onPhoneNumberChanged: app.phoneNumber = phoneNumber
@@ -153,13 +153,15 @@ Page {
             Component {
                 id: timeCBComponent
                 ComboBox {
+                    property string costs: cityLM.currentTime.costs.toLocaleString(Qt.locale(),'f',2) + " €"
                     label: qsTr("Zeit")+":"
                     currentIndex: cityLM.currentTimeIndex
+                    description: timeFormat(value)
                     menu: ContextMenu {
                         Repeater {
                             id: timeRep
                             model: cityLM.currentZone.timeList
-                            MenuItem { text: model.time + " " + timeFormat(model.time) }
+                            MenuItem { text: model.text ? model.text : model.time }// + " " + timeFormat(model.time) }
                         }
                     }
                     onCurrentIndexChanged: {
@@ -175,6 +177,8 @@ Page {
 //                    anchors.horizontalCenter: parent.horizontalCenter
 //                    property bool start: cityLM.currentTimeIndex
                     property string value: !cityLM.currentTimeIndex ? "Start" : "Stop"
+                    property string costs: cityLM.currentZone.timeList.get(1).costs + "€/"
+                                           + cityLM.currentZone.timeList.get(1).time +" min."
                     Button {
 //                        width: page.width/4
                         text: "Start";
@@ -194,6 +198,8 @@ Page {
                 id: timeSliderComponent
                 Slider {
 //                    id: timeSlider
+                    property string costs: ((value-minimumValue)*cityLM.currentZone.timeList.get(2).costs
+                                           + cityLM.currentZone.timeList.get(0).costs).toLocaleString(Qt.locale(),'f',2) + " €"
                     minimumValue: cityLM.currentZone.timeList.get(0).time
                     maximumValue: cityLM.currentZone.timeList.get(1).time
                     stepSize: cityLM.currentZone.timeList.get(2).time
@@ -226,17 +232,20 @@ Page {
         State {
             name: "discrete"
             PropertyChanges { target: timeLoader; sourceComponent: timeCBComponent }
-            PropertyChanges { target: page; time: cityLM.currentTime.time }
+            PropertyChanges { target: page; time: timeLoader.item.value }
+//            PropertyChanges { target: page; costs: timeLoader.item.costs.toLocaleString(Qt.locale(),'f',2) + " €"}
         },
         State {
             name: "floating"
             PropertyChanges { target: timeLoader; sourceComponent: timeSliderComponent }
             PropertyChanges { target: page; time: timeLoader.item.value }
+//            PropertyChanges { target: page; costs: timeLoader.item.costs.toLocaleString(Qt.locale(),'f',2) + " €"}
         },
         State {
             name: "startstop"
             PropertyChanges { target: timeLoader; sourceComponent: timeStartStopComponent }
             PropertyChanges { target: page; time: timeLoader.item.value }
+//            PropertyChanges { target: page; costs: timeLoader.item.costs.toLocaleString(Qt.locale(),'f',2) + " €"}
         }
     ]
 }
