@@ -17,6 +17,8 @@ ListModel {
     property var currentZone: currentCity.timeZoneList.get(currentTimeZoneIndex)
     property var currentTime: currentZone.timeList.get(currentTimeIndex)
 
+    property string baseInfoURL: "https://www.handyparken.at/handyparken/content/staedte/"
+
     property string dbName: "KurzParkDB"
     property string dbDesc: "KurzParkDB"
     property string dbVersion: "1.0"
@@ -62,6 +64,7 @@ ListModel {
 
     ListElement {
         name: "Mödling";
+        infoURL: "moedling.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
@@ -84,6 +87,7 @@ ListModel {
     ListElement {
         // Zeit Stadt*KZ
         name: "Wien";
+        infoURL: "wien.seam"
         phoneNumbers: [
             ListElement{number: "+436646600990"},
             ListElement{number: "+436646606000"}
@@ -107,6 +111,7 @@ ListModel {
     ListElement {
         // Zeit Stadt*KZ
         name: "Amstetten";
+        infoURL: "amstetten.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
@@ -130,6 +135,7 @@ ListModel {
     ListElement {
         // Zeit Zone Stadt*KZ
         name: "Baden";
+        infoURL: "baden.seam"
         phoneNumbers:[
             ListElement{number: "+438006644242"}
         ]
@@ -161,6 +167,7 @@ ListModel {
     ListElement {
         // Start Zone Stadt*KZ
         name: "Bludenz";
+        infoURL: "bludenz.seam"
         phoneNumbers:[
             ListElement{number: "+438006644242"}
         ]
@@ -203,6 +210,7 @@ ListModel {
     ListElement {
         // ZeitZone Stadt*KZ
         name: "Bregenz";
+        infoURL: "bregenz.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
@@ -242,6 +250,7 @@ ListModel {
 
     ListElement {
         name: "Eisenstadt (Zone A)";
+        infoURL: "eisenstadt.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
@@ -260,6 +269,7 @@ ListModel {
 
     ListElement {
         name: "Eisenstadt (Zone B + C)";
+        infoURL: "eisenstadt.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
@@ -283,6 +293,7 @@ ListModel {
 
     ListElement {
         name: "Gleisdorf";
+        infoURL: "gleisdorf.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
@@ -301,6 +312,7 @@ ListModel {
 
     ListElement {
         name: "Gmunden";
+        infoURL: "gmunden.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]
@@ -320,6 +332,7 @@ ListModel {
     ListElement {
         // Start Zone Stadt*KZ
         name: "Graz";
+        infoURL: "graz.seam"
         phoneNumbers:[
             ListElement{number: "+438006644242"}
         ]
@@ -355,6 +368,7 @@ ListModel {
 
     ListElement {
         name: "Perchtoldsdorf";
+        infoURL: "perchtoldsdorf.seam"
         phoneNumbers:[
             ListElement{number: "+436646606000"}
         ]

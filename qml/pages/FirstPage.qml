@@ -112,7 +112,11 @@ Page {
                     width: page.width/3
                     //                    anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("Info")
-                    onClicked: Qt.openUrlExternally("http://www.handyparken.at/handyparken/content/staedte/")
+                    onClicked: {
+                        var url = "http://www.handyparken.at/handyparken/content/staedte/" + cityLM.currentCity.infoURL
+                        console.log(url)
+                        Qt.openUrlExternally("http://www.handyparken.at/handyparken/content/staedte/" + cityLM.currentCity.infoURL)
+                    }
                 }
             }
             //            Row {
