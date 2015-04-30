@@ -13,18 +13,24 @@ Name:       harbour-kurzpark
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Tools for Short Time Parking in Austria
-Version:    0.1
-Release:    3
+Version:    0.1.90
+Release:    1
 Group:      Qt/Qt
 License:    BSD
 URL:        https://github.com/fuchsmich/kurzpark
 Source0:    https://github.com/fuchsmich/kurzpark
 Source100:  harbour-kurzpark.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   qt5-qtdeclarative-import-location
+Requires:   qt5-qtdeclarative-import-positioning
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5Positioning)
+BuildRequires:  qt5-qtdeclarative-import-positioning
+BuildRequires:  qt5-qtpositioning-devel
+BuildRequires:  qt5-qtlocation-devel
 BuildRequires:  desktop-file-utils
 
 %description

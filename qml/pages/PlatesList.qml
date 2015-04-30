@@ -45,6 +45,7 @@ Page {
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     readOnly: true
                     validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
+                    inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                 }
                 TextField {
                     width: page.width*0.4
