@@ -28,8 +28,10 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Positioning)
+BuildRequires:  pkgconfig(Qt5Location)
 BuildRequires:  qt5-qtdeclarative-import-positioning
 BuildRequires:  qt5-qtpositioning-devel
+BuildRequires:  qt5-qtdeclarative-import-location
 BuildRequires:  qt5-qtlocation-devel
 BuildRequires:  desktop-file-utils
 
