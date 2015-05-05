@@ -27,7 +27,8 @@ OTHER_FILES += qml/harbour-kurzpark.qml \
     qml/pages/CoverPage.qml \
     qml/pages/PlatesList.qml \
     rpm/harbour-kurzpark.changes \
-    qml/pages/MapPage.qml
+    qml/pages/MapPage.qml \
+    harbour-kurzpark.png
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -39,4 +40,4 @@ OTHER_FILES += qml/harbour-kurzpark.qml \
 # modify the localized app name in the the .desktop file.
 #TRANSLATIONS += translations/harbour-kurzpark-de.ts
 
-QT += positioning
+#QT += positioning

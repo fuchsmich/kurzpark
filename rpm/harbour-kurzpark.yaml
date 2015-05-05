@@ -36,6 +36,7 @@ Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - qt5-qtdeclarative-import-location
   - qt5-qtdeclarative-import-positioning
+  - qt5-plugin-geoservices-osm
 # All installed files
 Files:
   - '%{_bindir}'
