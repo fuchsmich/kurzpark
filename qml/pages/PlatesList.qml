@@ -1,9 +1,3 @@
-/*
-  Copyright (C) 2015 Michael Fuchs
-  Contact: Michael Fuchs <michfu@gmx.at>
-  All rights reserved.
-*/
-
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../components"
@@ -36,24 +30,26 @@ Page {
             }
             ListView.onRemove: animateRemoval()
             Row {
-                anchors.verticalCenter: parent.verticalCenter
                 x: Theme.paddingLarge
-                TextField {
-                    width: page.width*0.4
+                anchors.verticalCenter: parent.verticalCenter
+                Label {
                     id: plateTf
+                    width: page.width*0.4
+                    anchors.verticalCenter: parent.verticalCenter
                     text: number
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    readOnly: true
-                    validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
-                    inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+//                    readOnly: true
+//                    validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
+//                    inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                 }
-                TextField {
-                    width: page.width*0.4
+                Label {
                     id: descTf
+                    width: page.width*0.4
+                    anchors.verticalCenter: parent.verticalCenter
                     text: desc
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     font.italic: true
-                    readOnly: true
+//                    readOnly: true
                 }
                 IconButton {
                     id: saveBtn

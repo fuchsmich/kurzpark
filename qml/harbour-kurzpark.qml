@@ -6,12 +6,22 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import org.nemomobile.configuration 1.0
+
 import "pages"
 import "components"
 
 ApplicationWindow
 {
     id: app
+    property string configPath: "/apps/harbour-zutun"
+    ConfigurationGroup {
+        id: config
+        path: configPath
+        property var plates: [{number: "MD123AF", desc: "Meins"}, {number: "W12345X", desc: "Deins"}]
+    }
+
+
 
 //    property string testStr: "hallo"
     property string smsText
