@@ -11,7 +11,7 @@ ListModel {
     property string dbName: "KurzParkDB"
     property string dbDesc: "KurzParkDB"
     property string dbVersion: "1.0"
-    property int currentIndex: -1
+    property int currentIndex: 0
     property string currentPlate: get(currentIndex).number
     property bool loadingDb: false
 

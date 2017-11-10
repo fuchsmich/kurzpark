@@ -1,16 +1,17 @@
 Name: harbour-kurzpark
 Summary: Tools for Short Time Parking in Austria
-Version: 0.1
-Release: 3
+Version: 0.1.90
+Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
 Group: Qt/Qt
 URL: https://github.com/fuchsmich/kurzpark
+BuildArch: noarch
 License: BSD
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
-Sources: https://github.com/fuchsmich/kurzpark
-#- '%{name}-%{version}.tar.bz2'
+Sources:
+- '%{name}-%{version}.tar.bz2'
 Description: |
   Tools for Short Time Parking in Austria
 Configure: none
@@ -21,10 +22,12 @@ Builder: qtc5
 # This section specifies build dependencies that are resolved using pkgconfig.
 # This is the preferred way of specifying build dependencies for your package.
 PkgConfigBR:
-  - sailfishapp >= 1.0.2
+  - sailfishapp >= 1.0.3
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
+#  - Qt5Location
+#  - Qt5Positioning
 
 # Build dependencies without a pkgconfig setup can be listed here
 # PkgBR:
@@ -32,15 +35,21 @@ PkgConfigBR:
 
 # Runtime dependencies which are not automatically detected
 Requires:
-  - sailfishsilica-qt5 >= 0.10.9 
+  - sailfishsilica-qt5 >= 0.10.9
+  - libsailfishapp-launcher
+  - qt5-qtdeclarative-import-location
+  - qt5-qtdeclarative-import-positioning
+  - qt5-plugin-geoservices-osm
 
 # All installed files
 Files:
-  - '%{_bindir}'
+  - '%defattr(0644,root,root,-)'
   - '%{_datadir}/%{name}'
   - '%{_datadir}/applications/%{name}.desktop'
-  - '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+  - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
 
 # For more information about yaml and what's supported in Sailfish OS
 # build system, please see https://wiki.merproject.org/wiki/Spectacle
+#PkgBR: [qt5-qtdeclarative-import-positioning, qt5-qtpositioning-devel,
+#qt5-qtdeclarative-import-location, qt5-qtlocation-devel]
 

@@ -85,37 +85,43 @@ Page {
                 }
             }
 
+            ComboBox {
+                id: citySelector
+                width: page.width/2
+                label: qsTr("Ort")+":"
+                currentIndex: cityLM.currentIndex
+                menu: ContextMenu {
+                    Repeater {
+                        model: cityLM
+                        MenuItem { text: model.name }
+                    }
+                }
+                onCurrentIndexChanged: {
+                    cityLM.currentTimeIndex = 0
+                    cityLM.currentTimeZoneIndex = 0
+                    cityLM.currentIndex = currentIndex
+                }
+            }
+
             Row {
                 spacing: Theme.paddingLarge
                 //                x: Theme.paddingLarge
-//                anchors.horizontalCenter: parent.horizontalCenter
-                ComboBox {
-                    id: citySelector
-                    width: page.width/2
-                    label: qsTr("Ort")+":"
-                    currentIndex: cityLM.currentIndex
-                    menu: ContextMenu {
-                        Repeater {
-                            model: cityLM
-                            MenuItem { text: model.name }
-                        }
-                    }
-                    onCurrentIndexChanged: {
-                        cityLM.currentTimeIndex = 0
-                        cityLM.currentTimeZoneIndex = 0
-                        cityLM.currentIndex = currentIndex
-                    }
+                anchors.horizontalCenter: parent.horizontalCenter
+                Button {
+                    width: page.width/3
+                    text: qsTr("Karte")
+                    onClicked: pageStack.push(Qt.resolvedUrl("MapPage.qml"))
                 }
 
                 Button {
-//                    anchors.right: parent.right
+                    //                    anchors.right: parent.right
                     width: page.width/3
                     //                    anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("Info")
                     onClicked: {
                         var url = "http://www.handyparken.at/handyparken/content/staedte/" + cityLM.currentCity.infoURL
                         console.log(url)
-                        Qt.openUrlExternally("http://www.handyparken.at/handyparken/content/staedte/" + cityLM.currentCity.infoURL)
+                        Qt.openUrlExternally(url)
                     }
                 }
             }

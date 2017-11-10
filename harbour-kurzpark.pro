@@ -12,21 +12,24 @@
 # The name of your application
 TARGET = harbour-kurzpark
 
-CONFIG += sailfishapp
-
-SOURCES += src/harbour-kurzpark.cpp
+CONFIG += sailfishapp_qml
 
 OTHER_FILES += qml/harbour-kurzpark.qml \
     qml/pages/FirstPage.qml \
     rpm/harbour-kurzpark.spec \
     rpm/harbour-kurzpark.yaml \
-    #translations/*.ts \
+    translations/*.ts \
     harbour-kurzpark.desktop \
     qml/components/PlatesListModel.qml \
     qml/components/CityListModel.qml \
-    qml/pages/CoverPage.qml \
+    qml/cover/CoverPage.qml \
     qml/pages/PlatesList.qml \
-    rpm/harbour-kurzpark.changes
+    rpm/harbour-kurzpark.changes \
+    rpm/harbour-kurzpark.changes.run.in \
+    qml/pages/MapPage.qml \
+    icons/harbour-kurzpark.png
+
+SAILFISHAPP_ICONS = 86x86 108x108 128x128
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -38,3 +41,4 @@ OTHER_FILES += qml/harbour-kurzpark.qml \
 # modify the localized app name in the the .desktop file.
 #TRANSLATIONS += translations/harbour-kurzpark-de.ts
 
+#QT += positioning

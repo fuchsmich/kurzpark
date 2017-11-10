@@ -20,9 +20,9 @@ ApplicationWindow
 //    onSmsTextChanged: cP.smsText = smsText
 
     initialPage: Component { FirstPage { id: fP } }
-//    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    cover: Qt.resolvedUrl("pages/CoverPage.qml")
 
-    cover: Component { CoverPage{ id: cP } }
+//    cover: Component { CoverPage{ id: cP } }
 
     PlatesListModel {
         id: platesLM
