@@ -15,18 +15,17 @@ TARGET = harbour-kurzpark
 CONFIG += sailfishapp_qml
 
 OTHER_FILES += qml/harbour-kurzpark.qml \
-    qml/pages/FirstPage.qml \
-    rpm/harbour-kurzpark.spec \
-    rpm/harbour-kurzpark.yaml \
-    translations/*.ts \
-    harbour-kurzpark.desktop \
-    qml/components/PlatesListModel.qml \
     qml/components/CityListModel.qml \
     qml/cover/CoverPage.qml \
+    qml/pages/FirstPage.qml \
     qml/pages/PlatesList.qml \
+    qml/pages/MapPage.qml \
+    rpm/harbour-kurzpark.spec \
+    rpm/harbour-kurzpark.yaml \
     rpm/harbour-kurzpark.changes \
     rpm/harbour-kurzpark.changes.run.in \
-    qml/pages/MapPage.qml \
+    translations/*.ts \
+    harbour-kurzpark.desktop \
     icons/harbour-kurzpark.png
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128

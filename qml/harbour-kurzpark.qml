@@ -18,7 +18,11 @@ ApplicationWindow
     ConfigurationGroup {
         id: config
         path: configPath
-        property var plates: [{number: "MD123AF", desc: "Meins"}, {number: "W12345X", desc: "Deins"}]
+        property ConfigurationValue plates: ConfigurationValue {
+            key: "/apps/harbour-zutun/plates"
+            defaultValue: [{number: "MD123AF", desc: "Meins"}, {number: "W12345X", desc: "Deins"}]
+            onValueChanged: console.log(value)
+        }
     }
 
 

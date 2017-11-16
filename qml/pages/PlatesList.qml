@@ -12,13 +12,20 @@ Page {
             MenuItem {
                 text: qsTr("Kennzeichen hinzufügen")
                 onClicked: {
-                    platesLM.append({"number": "ASDASD"+platesLM.count, "desc":"desc"})
+                    listView.plates.push({number: "ASDASD"+listView.plates.length, desc:"desc"})
+                    listView.storePlates()
                 }
             }
         }
 
         id: listView
-        model: platesLM
+        property var plates: config.plates.value
+        function storePlates() {
+            config.plates.value = plates
+            config.plates.sync()
+        }
+
+        model: plates
         anchors.fill: parent
         header: PageHeader {
             title: qsTr("Kennzeichen")
@@ -26,7 +33,7 @@ Page {
         delegate: ListItem {
             id: delegate
             function remove() {
-                remorseAction("Entfernen", function() { platesLM.remove(index) })
+                remorseAction("Entfernen", function() { listView.plates.splice(index,1); listView.storePlates() }) //TODO
             }
             ListView.onRemove: animateRemoval()
             Row {
@@ -36,7 +43,7 @@ Page {
                     id: plateTf
                     width: page.width*0.4
                     anchors.verticalCenter: parent.verticalCenter
-                    text: number
+                    text: listView.plates[index].number
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
 //                    readOnly: true
 //                    validator: RegExpValidator {regExp: /^([0-9]|[A-Z])+$/ }
@@ -46,7 +53,7 @@ Page {
                     id: descTf
                     width: page.width*0.4
                     anchors.verticalCenter: parent.verticalCenter
-                    text: desc
+                    text: listView.plates[index].desc
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     font.italic: true
 //                    readOnly: true
@@ -62,7 +69,8 @@ Page {
                     onClicked: {
                         plateTf.readOnly = descTf.readOnly = true
                         visible = false
-                        platesLM.set(index, {"number": plateTf.text, "desc": descTf.text})
+                        listView.plates[index].number = plateTf.text
+                        listView.plates[index].number = descTf.text
                     }
                 }
             }

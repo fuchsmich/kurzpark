@@ -70,8 +70,9 @@ Page {
                 menu: ContextMenu {
                     Repeater {
                         id:plateRep
-                        model: platesLM
-                        MenuItem { text: model.number + " <i>(" + model.desc +")</i>"}
+                        property var plates: config.plates.value
+                        model: plates //platesLM
+                        MenuItem { text: plateRep.plates[index].number + " <i>(" + plateRep.plates[index].desc +")</i>"}
                     }
                 }
                 onClicked: {
