@@ -33,7 +33,7 @@ ApplicationWindow
 //    property string s
 //    onSmsTextChanged: cP.smsText = smsText
 
-    initialPage: Component { FirstPage { id: fP } }
+    initialPage: Component { MapPage { } }
     cover: Qt.resolvedUrl("pages/CoverPage.qml")
 
 //    cover: Component { CoverPage{ id: cP } }

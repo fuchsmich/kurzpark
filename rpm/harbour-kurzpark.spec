@@ -30,6 +30,10 @@ BuildRequires:  pkgconfig(sailfishapp) >= 1.0.3
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  qt5-qtdeclarative-import-positioning
+BuildRequires:  qt5-qtpositioning-devel
+BuildRequires:  qt5-qtdeclarative-import-location
+BuildRequires:  qt5-qtlocation-devel
 BuildRequires:  desktop-file-utils
 
 %description

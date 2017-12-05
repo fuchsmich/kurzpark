@@ -12,15 +12,20 @@ Page {
             MenuItem {
                 text: qsTr("Kennzeichen hinzufügen")
                 onClicked: {
-                    listView.plates.push({number: "ASDASD"+listView.plates.length, desc:"desc"})
-                    listView.storePlates()
+                    listView.addPlate()
                 }
             }
         }
 
         id: listView
         property var plates: config.plates.value
-        function storePlates() {
+        function removePlate(i) {
+            plates.splice(i,1)
+            config.plates.value = plates
+            config.plates.sync()
+        }
+        function addPlate() {
+            listView.plates.push({number: "ASDASD"+listView.plates.length, desc:"desc"})
             config.plates.value = plates
             config.plates.sync()
         }
@@ -33,7 +38,7 @@ Page {
         delegate: ListItem {
             id: delegate
             function remove() {
-                remorseAction("Entfernen", function() { listView.plates.splice(index,1); listView.storePlates() }) //TODO
+                remorseAction("Entfernen", function() { listView.removePlate(index) }) //TODO
             }
             ListView.onRemove: animateRemoval()
             Row {

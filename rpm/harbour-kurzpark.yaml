@@ -50,6 +50,6 @@ Files:
 
 # For more information about yaml and what's supported in Sailfish OS
 # build system, please see https://wiki.merproject.org/wiki/Spectacle
-#PkgBR: [qt5-qtdeclarative-import-positioning, qt5-qtpositioning-devel,
-#qt5-qtdeclarative-import-location, qt5-qtlocation-devel]
+PkgBR: [qt5-qtdeclarative-import-positioning, qt5-qtpositioning-devel,
+qt5-qtdeclarative-import-location, qt5-qtlocation-devel]
 

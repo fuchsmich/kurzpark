@@ -9,8 +9,13 @@ import "../components"
 Page {
     id: page
 
-    property real longitude: 16.262188168024327
-    property real latitude: 48.19780945895088
+//    property Location wien: Location {
+//        coordinate: Location.coordinate(48.19, 16.26)
+////        {
+////            latitude: 48.19
+////            longitude: 16.26
+////        }
+//    }
 
     PositionSource {
         id: src
@@ -21,10 +26,6 @@ Page {
             console.log("Coordinate:", coord.longitude, coord.latitude);
         }
     }
-
-
-
-
 
 
     Map {
@@ -39,13 +40,12 @@ Page {
         //     }
         anchors.fill: parent
 
-        center {
-            latitude: page.latitude
-            longitude: page.longitude
-        }
+//        center: wien.coordinate
+        onCenterChanged: console.log(center.latitude, center.longitude, center.isValid)
 
         //     zoomLevel: (map.minimumZoomLevel + map.maximumZoomLevel)/6
-        zoomLevel: 12 // maximumZoomLevel (=18?)
+//        zoomLevel: 12 // maximumZoomLevel (=18?)
+        onZoomLevelChanged: console.log(zoomLevel)
         gesture.enabled: true
         plugin: Plugin {
             name: "osm"
@@ -147,39 +147,52 @@ Page {
         }
 
         Component.onCompleted: {
-            console.log(zoomLevel);
-            getParkZones();
+            vienna()
+            getZonesWien()
+            zoomLevel = 15
+        }
+
+        function vienna() {
+            center = QtPositioning.coordinate(48.1983994,16.3555348)
         }
     }
     Row {
+        id: row
         anchors {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
         }
         Button {
-            width: page.width/4
-            text: qsTr("nix")
+            width: height
+            text: qsTr("P")
             id: updtBtn
             onClicked: {
-                //            getZonesWien();
+                map.getParkZones()
             }
+            color: Qt.darker(Theme.secondaryHighlightColor)
         }
         Button {
             //        width: page.width/2
-            width: page.width/4
+            width: height
             text: qsTr("+")
             id: plusBtn
             enabled: map.zoomLevel < map.maximumZoomLevel
             onClicked: map.zoomLevel = map.zoomLevel + 1
+            color: Qt.darker(Theme.secondaryHighlightColor)
         }
         Button {
             //        width: page.width/2
-            width: page.width/4
+            width: height
             text: qsTr("-")
             id: minusButton
             enabled: map.zoomLevel > map.minimumZoomLevel
             onClicked: map.zoomLevel = map.zoomLevel - 1
+            color: Qt.darker(Theme.secondaryHighlightColor)
+        }
+        Label {
+            text: map.center.toString()
+            color: Qt.darker(Theme.secondaryHighlightColor)
         }
     }
 
