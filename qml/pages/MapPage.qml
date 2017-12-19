@@ -40,20 +40,62 @@ Page {
         //     }
         anchors.fill: parent
 
-//        center: wien.coordinate
-        onCenterChanged: console.log(center.latitude, center.longitude, center.isValid)
+//        property MapCircle circle
+
+        onCenterChanged: {
+            console.log(center.latitude, center.longitude, center.isValid)
+//            circle = Qt.createQmlObject('import QtLocation 5.0; MapCircle {}', page)
+//            circle.center = map.center
+//            circle.radius = 50.0
+//            circle.color = 'green'
+//            circle.border.width = 3
+//            map.addMapItem(circle)
+        }
+
+        Rectangle {
+            width: Theme.itemSizeExtraSmall
+            height: width
+//            anchors.horizontalCenter: map.horizontalCenter
+//            anchors.verticalCenter: map.verticalCenter
+            anchors.centerIn: parent
+            radius: width/2
+            color: Theme.highlightColor
+            opacity: 0.4
+            border.color: black
+            border.width: 2
+            Rectangle {
+                anchors.centerIn: parent
+                width: parent.width
+                height: 1
+                border.color: black
+                border.width: 2
+            }
+            Rectangle {
+                anchors.centerIn: parent
+                height: parent.width
+                width: 1
+                border.color: black
+                border.width: 2
+            }
+        }
+
+
+
 
         //     zoomLevel: (map.minimumZoomLevel + map.maximumZoomLevel)/6
 //        zoomLevel: 12 // maximumZoomLevel (=18?)
         onZoomLevelChanged: console.log(zoomLevel)
+        minimumZoomLevel: 13
+
         gesture.enabled: true
         plugin: Plugin {
             name: "osm"
         }
 
         function getParkZones() {
+            //https://www.data.gv.at/katalog/dataset/6858b208-62bc-424e-9d7b-c89b74d3d3e3
             getZonesWien("http://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:KURZPARKZONEOGD&srsName=EPSG:4326&outputFormat=json");
-            getZonesWien("http://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:KURZPARKSTREIFENOGD&srsName=EPSG:4326&outputFormat=json");
+//            getZonesWien("http://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:KURZPARKSTREIFENOGD&srsName=EPSG:4326&outputFormat=json");
         }
 
         function getZonesWien(jsonurl) {
@@ -129,9 +171,9 @@ Page {
                     newZone.color = "red";
                     newZone.border.width = 3;
                     map.addMapItem(newZone);
-                    console.log("MapItems", map.mapItems.length);
                 }
             }
+            console.log("MapItems", map.mapItems.length);
         }
 
 
@@ -153,7 +195,11 @@ Page {
         }
 
         function vienna() {
-            center = QtPositioning.coordinate(48.1983994,16.3555348)
+            var min = QtPositioning.coordinate(48.1737761,16.3278912)
+            var max = QtPositioning.coordinate(48.2498907,16.3917386)
+            center = QtPositioning.coordinate(
+                        Math.random()*(max.latitude - min.latitude) + min.latitude,
+                        Math.random()*(max.longitude - min.longitude) + min.longitude )
         }
     }
     Row {
@@ -170,7 +216,7 @@ Page {
             onClicked: {
                 map.getParkZones()
             }
-            color: Qt.darker(Theme.secondaryHighlightColor)
+            color: Qt.darker(Theme.highlightColor)
         }
         Button {
             //        width: page.width/2
@@ -179,7 +225,7 @@ Page {
             id: plusBtn
             enabled: map.zoomLevel < map.maximumZoomLevel
             onClicked: map.zoomLevel = map.zoomLevel + 1
-            color: Qt.darker(Theme.secondaryHighlightColor)
+            color: Qt.darker(Theme.highlightColor)
         }
         Button {
             //        width: page.width/2
@@ -188,11 +234,11 @@ Page {
             id: minusButton
             enabled: map.zoomLevel > map.minimumZoomLevel
             onClicked: map.zoomLevel = map.zoomLevel - 1
-            color: Qt.darker(Theme.secondaryHighlightColor)
+            color: Qt.darker(Theme.highlightColor)
         }
         Label {
             text: map.center.toString()
-            color: Qt.darker(Theme.secondaryHighlightColor)
+            color: Qt.darker(Theme.highlightColor)
         }
     }
 
